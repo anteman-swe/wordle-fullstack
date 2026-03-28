@@ -1,0 +1,26 @@
+{
+  "name": "wordle-fullstack",
+  "version": "1.0.0",
+  "description": "Wordle game as a student project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "nodemon --watch backend/src --exec ts-node backend/src/index.ts",
+    "frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anteman-swe/wordle-fullstack.git"
+  },
+  "keywords": [],
+  "author": "Anders Eriksson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anteman-swe/wordle-fullstack/issues"
+  },
+  "homepage": "https://github.com/anteman-swe/wordle-fullstack#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
