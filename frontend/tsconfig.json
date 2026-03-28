@@ -1,4 +1,11 @@
 {
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["../shared/*"]
+    }
+    // ... resten av din config
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

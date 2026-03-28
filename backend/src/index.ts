@@ -1,18 +1,20 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import type { Request, Response } from 'express';
 import cors from 'cors';
+import type { Message } from '../../shared/types.js'
 
 const app = express();
 const PORT = 8080;
 
 app.use(cors({
-  origin: 'http:localhost:5080'
+  origin: 'http:localhost:5173'
 }));
 app.use(express.json());
 
-interface Message {
-  text: string;
-  timestamp: string;
-}
+// interface Message {
+//   text: string;
+//   timestamp: string;
+// }
 
 app.get('/api/data', (req: Request, res: Response) => {
   const response: Message = {
