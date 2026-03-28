@@ -4,7 +4,9 @@ import cors from 'cors';
 const app = express();
 const PORT = 8080;
 
-app.use(cors());
+app.use(cors({
+  origin: 'http:localhost:5080'
+}));
 app.use(express.json());
 
 interface Message {
