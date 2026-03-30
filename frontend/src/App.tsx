@@ -1,30 +1,39 @@
-import { useEffect, useState } from 'react';
 import './App.scss';
+import GuessInput from './components/GuessInput.tsx';
 import Header from './components/Header.tsx';
-import type { Message } from '../../shared/types.ts';
+import Matrix from './components/Matrix.tsx';
+import { useState } from 'react';
 
-// Samma interface som i backend (man kan dela dessa i en gemensam mapp senare)
-// interface ApiData {
-//   text: string;
-//   timestamp: string;
-// }
+const numberOfGuesses: number = 6;
+const numberOfChars: number = 5; 
+
 
 function App() {
-  const [data, setData] = useState<Message | null>(null);
 
-  useEffect(() => {
-    fetch('/api/data')
-      .then(res => res.json())
-      .then((json: Message) => setData(json));
-  }, []);
+  const wordMatrix: Array<Array<string>> =  Array(numberOfGuesses).fill(null).map(() => Array(numberOfChars).fill(""));
+  const [guessMatrix, setMatrix] = useState(wordMatrix);
+
+  const updateRow = (row: number, guessWord: Array<string>) => {
+      const newMatrix = [...guessMatrix];
+      guessWord.map((char, index) => {
+        newMatrix[row][index] = char;
+      })
+      setMatrix(newMatrix);
+  }
+
+  function testGuess(word: string, guessNo: number) {
+    if(word.length > numberOfChars) {
+      word = word.slice(0, numberOfChars)
+    }
+    const guessArray: Array<string> = word.split('');
+    updateRow(guessNo,guessArray);
+  }
 
   return (
     <>
       <Header />
-      <h1>Västerbotten Fullstack TS</h1>
-      {data && (
-        <p>Meddelande: {data.text} <br/> Tid: {data.timestamp}</p>
-      )}
+      <GuessInput onGuess={testGuess}/>
+      <Matrix guessMatrix={guessMatrix}/>
     </>
   )
 }

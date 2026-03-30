@@ -4,7 +4,7 @@ import cors from 'cors';
 import type { Message } from '../../shared/types.js'
 
 const app = express();
-const PORT = 8080;
+const PORT = 5080;
 
 app.use(cors({
   origin: 'http:localhost:5173'

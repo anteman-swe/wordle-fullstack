@@ -1,0 +1,42 @@
+@use "../styles/variables" as v;
+
+form {
+  margin: 1rem auto;
+  margin-top: 2rem;
+  width: fit-content;
+  text-align: left;
+  label {
+    height: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    input {
+      height: 90%;
+      width: 16rem;
+      padding-left: 0.5rem;
+      background-color: white;
+      border-radius: 5px 0 0 0;
+      border: 0;
+      border-bottom: solid 2px white;
+      color: v.$text-color;
+      &:focus {
+        outline: none;
+        border-bottom: solid 2px v.$text-color;
+        & ~button {
+            border-bottom: solid 2px v.$text-color;
+        }
+      }
+    }
+    button {
+      height: 100%;
+      width: 2rem;
+      background-color: white;
+      border-radius: 0 5px 0 0;
+      border: 0;
+    //   border-bottom: solid 2px v.$text-color;
+      color: v.$text-color;
+    }
+  }
+  p {
+    font-size: 0.7rem;
+  }
+}

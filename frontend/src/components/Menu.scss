@@ -1,0 +1,17 @@
+@use '../styles/variables' as v;
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
+    color: v.$text-color;
+    font-size: 0.9rem;;
+    img {
+        height: 1.5rem;
+        width: 1.5rem;
+        margin-bottom: 0.2rem;
+    }
+    &:hover {
+     color:red;   
+    }
+}
