@@ -1,3 +1,6 @@
 [submodule "backend/word-logic"]
 	path = backend/word-logic
 	url = https://github.com/anteman-swe/wordle-game.git
+[submodule "backend/wordlist"]
+	path = backend/wordlist
+	url = https://github.com/anteman-swe/svenska-ord.git
