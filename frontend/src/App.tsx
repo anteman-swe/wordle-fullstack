@@ -4,7 +4,8 @@ import Header from './components/Header.tsx';
 import Matrix from './components/Matrix.tsx';
 import { useState } from 'react';
 import type { testTuple } from '../../shared/types.ts';
-function App() {
+
+export default function App() {
 
   const [numberOfGuesses, setNumberOfGuesses] = useState(6); // TODO: Koppla variabeln till settings
   const [numberOfChars, setNumberOfChars] = useState(5); // TODO: Koppla variabeln till settings
@@ -31,7 +32,7 @@ function App() {
       setMatrix(newMatrix);
   }
 
-  function testGuess(word: string, guessNo: number) {
+  async function testGuess(word: string, guessNo: number) {
     if(guessNo > numberOfGuesses && !endOfGame) {
       setEnd(true);
     }
@@ -40,11 +41,8 @@ function App() {
       word = word.slice(0, numberOfChars)
     }
     
-    const resultArray: Array<testTuple> = []; // TODO: Äkta test måste göras med POST till servern?
-    const guessArray: Array<string> = word.split('');
-    guessArray.map((letter) => {
-      resultArray.push({letter: letter, result: 'correct'});
-    }) 
+    const postArray: unknown = await postGuessWord(word);
+    const resultArray = postArray as Array<testTuple>;
     updateRow(guessNo,resultArray);
   }
 
@@ -57,4 +55,12 @@ function App() {
   )
 }
 
-export default App
+async function postGuessWord(testWord: string) {
+  const result: Response = await fetch('/api/testword', {
+    method: 'POST',
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({word: testWord}),
+  });
+  const resJson = await result.json();
+  return resJson;
+} 
