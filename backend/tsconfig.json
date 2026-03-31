@@ -4,10 +4,11 @@
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
-
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/*"],
+      "@word-logic": ["word-logic/*"],
+      "@wordlist": ["wordlist/*"]
     },
     // Environment Settings
     // See also https://aka.ms/tsconfig/module

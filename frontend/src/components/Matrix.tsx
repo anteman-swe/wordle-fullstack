@@ -1,7 +1,8 @@
 import "./Matrix.scss";
+import type { testTuple } from '../../../shared/types'
 
 interface matrixProps {
-    guessMatrix: Array<Array<string>>
+    guessMatrix: Array<Array<testTuple>>
 };
 
 export default function Matrix(props: matrixProps) {
@@ -12,8 +13,10 @@ export default function Matrix(props: matrixProps) {
             {guessMatrix.map((row, rowIndex) => (
                 <div key={rowIndex} className="matrixrow">
                     {row.map((char, charIndex) => (
-                        <div key={charIndex} className="matrixsquare">
-                            {char}
+                        <div key={charIndex} 
+                        className="matrixsquare" 
+                        style={{backgroundColor: char.result == 'correct' ? 'green' : char.result == 'misplaced' ? 'yellow' : 'gray'}}>
+                            {char.letter}
                         </div>
                     ))}
                 </div>

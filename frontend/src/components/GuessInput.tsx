@@ -4,13 +4,17 @@ import './GuessInput.scss';
 const guessPlaceholder: string = "Gissa ordet?";
 const guessInputText: string = "Mata in din gissning och klicka på pilen...";
 
-export default function GuessInput({ onGuess }) {
+interface guessProps {
+    onGuess: (word: string, guessNo: number) => void;
+}
+
+export default function GuessInput({ onGuess }: guessProps) {
     const [guess, setGuess] = useState('');
     const [guessNo, setGuessNo] = useState(0);
 
     return (
         <>
-        <form onSubmit={(ev) => {
+        <form onSubmit={(ev: React.ChangeEvent) => {
             ev.preventDefault();
             const numberOfGuess: number = guessNo;
             onGuess(guess, numberOfGuess);
@@ -23,10 +27,9 @@ export default function GuessInput({ onGuess }) {
                     type="text"
                     placeholder={guessPlaceholder}
                     value={guess}
-                    onChange={(ev: Event) => {setGuess(ev.target.value)}} 
+                    onChange={(ev: React.ChangeEvent<HTMLInputElement>) => {setGuess(ev.target.value)}} 
                 />
-                <button 
-                    type='submit'>&gt;</button>
+                <button type='submit'>&gt;</button>
             </label>
            
             <p>{guessInputText}</p>
