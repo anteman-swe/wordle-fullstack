@@ -1,12 +1,10 @@
 import "./Matrix.scss";
-import type { testTuple } from '../../../shared/types'
-
+import type { testTuple } from '../../../shared/types';
 interface matrixProps {
     guessMatrix: Array<Array<testTuple>>
 };
 
-export default function Matrix(props: matrixProps) {
-    const guessMatrix = props.guessMatrix;
+export default function Matrix({guessMatrix}: matrixProps) {
     
     return (
         <div className="wordmatrix">

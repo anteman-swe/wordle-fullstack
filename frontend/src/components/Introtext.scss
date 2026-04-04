@@ -1,0 +1,15 @@
+
+@use '../styles/variables' as v;
+
+h1{
+    margin-top: 3rem;
+    font-size: 2rem;
+    color: v.$text-color;
+}
+.intro {
+    margin: 0 auto;
+    max-width: 412px;
+    text-align: left;
+    color: v.$text-color;
+    font-size: 1rem;
+}

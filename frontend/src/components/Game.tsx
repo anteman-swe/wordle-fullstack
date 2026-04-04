@@ -1,9 +1,9 @@
-import './Game.scss';
-import GuessInput from './GuessInput.tsx';
-import Matrix from './Matrix.tsx';
-import { useEffect, useState } from 'react';
-import type { testTuple } from '../../../shared/types.ts';
-
+import "./Game.scss";
+import GuessInput from "./GuessInput.tsx";
+import Matrix from "./Matrix.tsx";
+import GameWon from './GameWon.tsx'
+import { useEffect, useState } from "react";
+import type { testTuple } from "../../../shared/types.ts";
 interface gameProps {
   numberOfGuesses: number;
   numberOfChars: number;
@@ -11,45 +11,70 @@ interface gameProps {
 }
 
 export default function Game(props: gameProps) {
+  const [endOfGame, setEnd] = useState<boolean>(false);
+  const [gameVictory, setVictory] = useState<boolean>(false);
+  const emptyArray = Array(props.numberOfGuesses)
+      .fill(null)
+      .map(() =>
+        Array(props.numberOfChars).fill({ letter: "", result: "incorrect" }),
+      );
+  const [guessMatrix, setMatrix] = useState(emptyArray);
+  const [guessNo, setGuessNo] = useState(0);
 
-  const [endOfGame, setEnd] = useState(false);
-
-  const [guessMatrix, setMatrix] = useState(Array(props.numberOfGuesses).fill(null).map(() => 
-      Array(props.numberOfChars).fill({letter: '', result: 'incorrect'})));
-  
   const updateRow = (row: number, guessWord: Array<testTuple>) => {
-      const newMatrix = [...guessMatrix];
-      guessWord.map((charResult, index) => {
-        newMatrix[row][index] = charResult;
-      })
-      setMatrix(newMatrix);
-  }
+    const newMatrix = [...guessMatrix];
+    guessWord.map((charResult, index) => {
+      newMatrix[row][index] = charResult;
+    });
+    setMatrix(newMatrix);
+  };
 
   async function startTheGame(chars: number, dupsAllowed: boolean) {
-    const tryTostartGame: Response = await fetch('/api/startgame?wl=' + chars + '&dup=' + dupsAllowed);
+    const tryTostartGame: Response = await fetch(
+      "/api/startgame?wl=" + chars + "&dup=" + dupsAllowed,
+    );
     const gameStarted = await tryTostartGame.json();
-    if(tryTostartGame.status !== 204) {
-      if(gameStarted.text) {
-        return
-      }      
+    if (tryTostartGame.status !== 204) {
+      if (gameStarted.text) {
+        return;
+      }
     } else {
       console.log(gameStarted.text);
     }
   }
 
-  async function testGuess(word: string, guessNo: number) {
-    if(guessNo > props.numberOfGuesses && !endOfGame) {
+  async function testGuess(word: string) {
+    if (guessNo >= props.numberOfGuesses && !endOfGame) {
       setEnd(true);
     }
     // TODO: Vad ska hända när spelet är slut?
 
-    if(word.length > props.numberOfChars) {
-      word = word.slice(0, props.numberOfChars)
+    if (word.length > props.numberOfChars) {
+      word = word.slice(0, props.numberOfChars);
     }
-    
+    setGuessNo(guessNo +  1);
     const postArray: unknown = await postGuessWord(word);
     const resultArray = postArray as Array<testTuple>;
-    updateRow(guessNo,resultArray);
+    updateRow(guessNo, resultArray);
+    const victory: boolean = resultArray.every(checkCorrect);
+    if(victory) {
+      setTimeout(handleWinning, 800);
+    }
+  }
+
+  function checkCorrect(element: testTuple) {
+    return element.result === 'correct';
+  }
+
+  const handleWinning = (): void => {
+    setVictory(true);
+    setMatrix(emptyArray);
+    setGuessNo(0);
+  }
+
+  const closeCelebration = (): void => {
+    setVictory(false);
+    startTheGame(props.numberOfChars, props.allowDups);
   }
 
   useEffect(() => {
@@ -58,18 +83,19 @@ export default function Game(props: gameProps) {
 
   return (
     <>
-      <GuessInput onGuess={testGuess}/>
-      <Matrix guessMatrix={guessMatrix}/>
+      <GuessInput onGuess={testGuess} />
+      <Matrix guessMatrix={guessMatrix} />
+      <GameWon isOpen={gameVictory} onClose={closeCelebration} />
     </>
-  )
+  );
 }
 
 async function postGuessWord(testWord: string) {
-  const result: Response = await fetch('/api/testword', {
-    method: 'POST',
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({word: testWord}),
+  const result: Response = await fetch("/api/testword", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ word: testWord }),
   });
   const resJson = await result.json();
   return resJson;
-} 
+}

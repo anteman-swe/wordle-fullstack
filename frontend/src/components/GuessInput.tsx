@@ -5,20 +5,17 @@ const guessPlaceholder: string = "Gissa ordet?";
 const guessInputText: string = "Mata in din gissning och klicka på pilen...";
 
 interface guessProps {
-    onGuess: (word: string, guessNo: number) => void;
+    onGuess: (word: string) => void;
 }
 
 export default function GuessInput({ onGuess }: guessProps) {
     const [guess, setGuess] = useState('');
-    const [guessNo, setGuessNo] = useState(0);
 
     return (
         <>
         <form onSubmit={(ev: React.ChangeEvent) => {
             ev.preventDefault();
-            const numberOfGuess: number = guessNo;
-            onGuess(guess, numberOfGuess);
-            setGuessNo(numberOfGuess + 1);
+            onGuess(guess);
             setGuess('');
         }}>
             <label>
