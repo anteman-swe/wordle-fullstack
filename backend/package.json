@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend för ett Wordle-spel på svenska",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -13,6 +13,7 @@
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.0",
+    "ejs": "^5.0.1",
     "express": "^5.2.1",
     "mongodb": "^7.1.1"
   },
