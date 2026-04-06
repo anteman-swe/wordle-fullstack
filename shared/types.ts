@@ -1,5 +1,6 @@
 interface Message {
   text: string;
+  gameID: string;
   timestamp: string;
 }
 interface testTuple {

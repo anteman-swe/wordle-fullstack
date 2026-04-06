@@ -1,51 +1,86 @@
 import express from 'express';
 import cors from 'cors';
 import wordCheck from '../word-logic/wordCheck .js';
-import wordSelect from '../word-logic/wordSelect .js';
+import wordSelect from '../word-logic/wordSelect.js';
 import { readFile } from 'node:fs/promises';
+import { connectToMongoDB } from './dbConnection.js';
+import Game from './models/Game.js';
+import Highscore from './models/Highscore.js';
 let wordlist;
+let secretWord = "";
 try {
     const pathToWords = new URL('../wordlist/svenska-ord-washed.json', import.meta.url);
     const fetchedList = await readFile(pathToWords, { encoding: 'utf8' });
-    wordlist = JSON.parse(fetchedList);
+    wordlist = await JSON.parse(fetchedList);
+    connectToMongoDB();
 }
 catch (err) {
     console.error(err.message);
 }
+const generateGameID = () => Math.random().toString(36).substring(2, 10);
 const app = express();
 const PORT = 5080;
 app.use(cors({
     origin: 'http:localhost:5173'
 }));
 app.use(express.json());
-// interface Message {
-//   text: string;
-//   timestamp: string;
-// }
 app.get('/api/data', (req, res) => {
     const response = {
         text: "Meddelande från TS-servern",
+        gameID: '0',
         timestamp: new Date().toISOString()
     };
     res.json(response);
 });
-app.get('/api/startgame', (req, res) => {
-    const response = {
-        text: "Meddelande från TS-servern",
-        timestamp: new Date().toISOString()
-    };
-    res.json(response);
+app.get('/api/startgame', async (req, res) => {
+    let response = { text: "", gameID: '', timestamp: "" };
+    const numberOfChars = Number(req.query.wl);
+    const allowDups = Boolean(req.query.dup);
+    const word = wordSelect(wordlist, numberOfChars, allowDups);
+    const gameId = generateGameID();
+    const startTime = new Date();
+    const game = new Game({ gameId, startTime });
+    await game.save();
+    console.log(word);
+    if (word !== null) {
+        secretWord = word;
+        response = {
+            text: "Secret word is selected",
+            gameID: gameId,
+            timestamp: new Date().toISOString()
+        };
+        res.status(201).json(response);
+    }
+    else {
+        response = {
+            text: "Secret word could not be selected",
+            gameID: '0',
+            timestamp: new Date().toISOString()
+        };
+        res.status(204).json(response);
+    }
+});
+app.post('/end-game', async (req, res) => {
+    const { gameId } = req.body;
+    const game = await Game.findOne({ gameId });
+    if (!game) {
+        return res.status(404).json({ error: 'Game not found' });
+    }
+    const endTime = new Date();
+    const duration = endTime.getTime() - game.startTime.getTime();
+    game.endTime = endTime;
+    game.duration = duration;
+    await game.save();
+    res.json({ duration });
+    console.log('Duration:', duration);
 });
 app.post('/api/testword', (req, res) => {
     const wordToTest = req.body.word;
-    console.log(wordToTest);
-    const testResult = wordCheck(wordToTest, "gurka");
-    console.log(testResult);
+    const testResult = wordCheck(wordToTest, secretWord);
     res.status(200).json(testResult);
     res.end();
 });
 app.listen(PORT, () => {
     console.log(`TS-Servern körs på http://localhost:${PORT}`);
 });
-// const test = wordCheck('gurka', 'gurka');
 //# sourceMappingURL=index.js.map

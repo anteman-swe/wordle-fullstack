@@ -1,5 +1,9 @@
 {
   "name": "wordle-fullstack",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "version": "1.0.0",
   "description": "Wordle game as a student project",
   "main": "index.js",

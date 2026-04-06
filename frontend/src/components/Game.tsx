@@ -2,7 +2,7 @@ import "./Game.scss";
 import GuessInput from "./GuessInput.tsx";
 import Matrix from "./Matrix.tsx";
 import GameWon from './GameWon.tsx'
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 import type { testTuple } from "../../../shared/types.ts";
 interface gameProps {
   numberOfGuesses: number;
@@ -13,6 +13,9 @@ interface gameProps {
 export default function Game(props: gameProps) {
   const [endOfGame, setEnd] = useState<boolean>(false);
   const [gameVictory, setVictory] = useState<boolean>(false);
+  const [gameID, setGameID] = useState<string>('');
+
+  console.log('GameID:', gameID);
   const emptyArray = Array(props.numberOfGuesses)
       .fill(null)
       .map(() =>
@@ -31,11 +34,12 @@ export default function Game(props: gameProps) {
 
   async function startTheGame(chars: number, dupsAllowed: boolean) {
     const tryTostartGame: Response = await fetch(
-      "/api/startgame?wl=" + chars + "&dup=" + dupsAllowed,
+      "/api/start-game?wl=" + chars + "&dup=" + dupsAllowed,
     );
     const gameStarted = await tryTostartGame.json();
     if (tryTostartGame.status !== 204) {
       if (gameStarted.text) {
+        setGameID(gameStarted.gameID);
         return;
       }
     } else {
@@ -47,7 +51,7 @@ export default function Game(props: gameProps) {
     if (guessNo >= props.numberOfGuesses && !endOfGame) {
       setEnd(true);
     }
-    // TODO: Vad ska hända när spelet är slut?
+    // TODO: Vad ska hända när spelet är slut utan lösning?
 
     if (word.length > props.numberOfChars) {
       word = word.slice(0, props.numberOfChars);
@@ -69,11 +73,12 @@ export default function Game(props: gameProps) {
   const handleWinning = (): void => {
     setVictory(true);
     setMatrix(emptyArray);
-    setGuessNo(0);
+    
   }
 
   const closeCelebration = (): void => {
     setVictory(false);
+    setGuessNo(0);
     startTheGame(props.numberOfChars, props.allowDups);
   }
 
