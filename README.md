@@ -12,12 +12,12 @@ git clone --recursive  https://github.com/anteman-swe/wordle-fullstack.git
 
 ### MongoDB
 
-Detta projekt använder MongoDB som databas.
+Projektet använder MongoDB som databas.
 
 #### Installation
 Installera MongoDB lokalt eller använd [MongoDB Atlas](https://www.mongodb.com/atlas/database) för ett molnalternativ. Lägg till din anslutningssträng i `.env`
 ##### Miljövariabler (`.env`)
-För att göra din kod säkrare och mer flexibel, använd miljövariabler för att lagra känslig information som anslutningssträngen. Skapa en `.env`-fil (kolla `.env_example` i undermappen 'backend') och lägg till:
+För att göra din kod säkrare och mer flexibel, använd miljövariabler för att lagra känslig information som anslutningssträngen. Skapa en `.env`-fil (kolla `.env_example`) och lägg till:
 
 ```code
 MONGODB_URI=mongodb://localhost:27017/ditt-databas-namn
