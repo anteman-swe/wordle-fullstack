@@ -1,20 +1,22 @@
+@use '../styles/variables' as v;
+
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #4caf50;
+  margin: 2px;
   cursor: pointer;
 }
 
 .sliderStyles {
     -webkit-appearance: none;
-    width: 150px;
+    appearance: none;
+    width: 50%;
     height: 20px;
     border-radius: 10px;
-    background: #d3d3d3;
-    outline: none;
+    background: v.$button-bg;
     padding: 0;
     margin: 10px 0;
 }
@@ -22,9 +24,18 @@ input[type="range"]::-webkit-slider-thumb {
 .wordLengthContainer {
     display: flex;  
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
     gap: 10px;
-    label span {
+    label {
         font-size: 1rem;
+    }
+    span {
+        font-size: 1rem;
+        line-height: 20px;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        border: solid 1px black;
+        text-align: center;
     }
 }

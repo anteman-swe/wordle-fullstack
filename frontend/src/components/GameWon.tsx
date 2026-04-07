@@ -1,12 +1,14 @@
 import React, { useRef } from 'react';
 import { Fireworks } from '@fireworks-js/react';
+import HighscoreInput from './HighscoreInput';
 
 interface FyrverkeriModalProps {
   isOpen: boolean;
   onClose: () => void;
+  postHighscore: (name: string) => void;
 }
 
-const GameWon: React.FC<FyrverkeriModalProps> = ({ isOpen, onClose }) => {
+const GameWon: React.FC<FyrverkeriModalProps> = ({ isOpen, onClose, postHighscore }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   if (!isOpen) return null;
@@ -100,7 +102,7 @@ const GameWon: React.FC<FyrverkeriModalProps> = ({ isOpen, onClose }) => {
         }}
       >
         <h2 style={{color: 'darkgray'}}>Grattis! du hittade ordet! 🎉</h2>
-        {/* TOD0: Om det är highscore ska namnet kunna läggas till highscore-listan*/}
+        <HighscoreInput postHighscore={postHighscore} />
         <button
           onClick={onClose}
           style={{

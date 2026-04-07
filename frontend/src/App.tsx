@@ -20,7 +20,10 @@ export default function App() {
 
   return (
     <>
-      <Header updateGameStates={updateGameStates} presentSettings={presentSettings}/>
+      <Header 
+        updateGameStates={updateGameStates} 
+        presentSettings={presentSettings}
+      />
       <Routes>
         <Route path='/' element={<StartPage />} />
         <Route path='/game' element={

@@ -1,0 +1,34 @@
+@use "../styles/variables" as v;
+
+.highscoreInput {
+  form {
+    margin: 2rem auto;
+    label {
+      input {
+        height: 2rem;
+        width: 70%;
+        background-color: white;
+        color: v.$text-color;
+        border: solid 1px v.$button-bg;
+        border-radius: 10px 0 0 10px;
+        margin-bottom: 0.5rem;
+        &:focus {
+          outline: solid 2px v.$button-bg;
+          & ~ button {
+            outline: solid 2px v.$button-bg;
+          }
+        }
+      }
+      button {
+        height: 2.3rem;
+        width: 20%;
+        background-color: v.$button-bg;
+        border: none;
+        border-radius: 0 10px 10px 0;
+      }
+    }
+    p {
+      font-size: 0.8rem;
+    }
+  }
+}

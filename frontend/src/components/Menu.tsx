@@ -26,7 +26,7 @@ export default function Menu() {
         onRequestClose={() => setModalState(false)}
         className="menuModal"
       >
-        <div className="menuList">
+        <div className="menuList" style={{width: "20%"}}>
           <h2>Meny</h2>
           <p>
             <Link
@@ -39,14 +39,13 @@ export default function Menu() {
             </Link>
           </p>
           <p>
-            <Link
-              to="/about"
+            <a href="/about"
               onClick={() => {
                 setModalState(false);
               }}
             >
               Om projektet
-            </Link>
+            </a>
           </p>
           <p>
             <Link
@@ -60,14 +59,13 @@ export default function Menu() {
           </p>
 
           <p>
-            <Link
-              to="/highscore"
+            <a href="/highscore"
               onClick={() => {
                 setModalState(false);
               }}
             >
               Se highscore-listan
-            </Link>
+            </a>
           </p>
         </div>
 

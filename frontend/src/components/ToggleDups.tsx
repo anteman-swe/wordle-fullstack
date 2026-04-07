@@ -19,14 +19,14 @@ const ToggleDups: React.FC<ToggleDupsProps> = ({ onDupsToggle, allowDups }) => {
 
   return (
     <div className="toggleDuplicatesContainer">
-      <label style={{ fontSize: "16px" }}>{"Tillåt bokstavsdubletter:"}</label>
+      <label>{"Tillåt bokstavsdubletter:"}</label>
       <div
         onClick={handleToggle}
         style={{
           width: "50px",
           height: "20px",
           backgroundColor: allowDuplicates ? "#4CAF50" : "#ccc",
-          borderRadius: "12px",
+          borderRadius: "10px",
           position: "relative",
           cursor: "pointer",
           transition: "background-color 0.3s",
