@@ -1,6 +1,8 @@
-import './Navigation.scss';
+import '../styles/Navigation.scss';
+
 import Menu from './Menu';
 import Settings from './Settings';
+
 import type { settingProps } from '../../../shared/types';
 
 export default function Navigation({updateGameStates, presentSettings}: settingProps) {

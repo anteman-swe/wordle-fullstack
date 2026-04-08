@@ -13,6 +13,10 @@ export default defineConfig({
       '/about': {
         target: 'http://localhost:5080 ',
         changeOrigin: true,
+      },
+      '/highscore': {
+        target: 'http://localhost:5080',
+        changeOrigin: true,
       }
     }
   }

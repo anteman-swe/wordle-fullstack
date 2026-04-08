@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './HighscoreInput.scss';
+import '../styles/HighscoreInput.scss';
 
 const highscorePlaceholder: string = "Ditt namn?";
 const highscoreText: string = "Lägg till ditt namn i Highscorelistan!";

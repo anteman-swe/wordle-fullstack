@@ -1,4 +1,4 @@
-import "./Matrix.scss";
+import "../styles/Matrix.scss";
 import type { testTuple } from '../../../shared/types';
 interface matrixProps {
     guessMatrix: Array<Array<testTuple>>

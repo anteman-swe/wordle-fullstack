@@ -26,7 +26,7 @@ try {
   wordlist = await JSON.parse(fetchedList);
   connectToMongoDB();
 } catch (err: any) {
-  console.error(err.message);
+  throw new Error(err.message);
 }
 
 const generateGameID = (): string =>
@@ -35,7 +35,6 @@ const generateGameID = (): string =>
 const app = express();
 const PORT = process.env.SERVER_PORT || 5080;
 
-app.engine("ejs", ejs.renderFile);
 app.set("view engine", "ejs");
 app.set("views", "./backend/views");
 
@@ -47,6 +46,8 @@ app.use(
 
 app.use(express.json());
 
+// ####### Server API for game #######
+// Adress för att testa API:
 app.get("/api/data", (req: Request, res: Response) => {
   const response: Message = {
     text: "Meddelande från TS-servern",
@@ -56,6 +57,7 @@ app.get("/api/data", (req: Request, res: Response) => {
   res.json(response);
 });
 
+// Adress to start the game
 app.get("/api/start-game", async (req: Request, res: Response) => {
   let response: Message = { text: "", gameID: "", timestamp: "" };
   const numberOfChars: number = Number(req.query.wl);
@@ -85,6 +87,7 @@ app.get("/api/start-game", async (req: Request, res: Response) => {
   }
 });
 
+// Adress to finish game
 app.post("/api/end-game", async (req: Request, res: Response) => {
   const { gameId } = req.body;
 
@@ -101,12 +104,12 @@ app.post("/api/end-game", async (req: Request, res: Response) => {
   await game.save();
 
   res.json({ duration });
-  console.log("Duration:", duration);
 });
 
-app.get("/api/highscore", (req: Request, res: Response) => {});
-
-app.post("/api/highscore", async (req: Request, res: Response) => {
+// Adress to render highscore page
+app.get('/highscores')
+// Adress to post Gamer Name to the highscore list
+app.post("/api/highscores", async (req: Request, res: Response) => {
   const { gameId, gamerName, tries, chars } = req.body;
   const game = await Game.findOne({ gameId });
   let duration: number;
@@ -129,24 +132,24 @@ app.post("/api/highscore", async (req: Request, res: Response) => {
   res.json(gameId);
 });
 
+// Adress to test guess words
 app.post("/api/testword", async (req: Request, res: Response) => {
   const { gameId, word } = req.body;
-  console.log('Ord att testa:', word)
   const game = await Game.findOne({ gameId });
-  console.log('Game i test:', game);
   if (!game) {
     return res.status(404).json({ error: "Game not found" });
   } else {
     const secretWord = game.word;
-    console.log(secretWord);
     const testResult: Array<testTuple> = wordCheck(word, secretWord);
     res.status(200).json(testResult);
     res.end();
   }
 });
 
+// Static route for about page
 app.use('/about', express.static('./backend/pages/about.html'));
 
+// Start server
 app.listen(PORT, () => {
   console.log(`TS-Servern körs på http://localhost:${PORT}`);
 });

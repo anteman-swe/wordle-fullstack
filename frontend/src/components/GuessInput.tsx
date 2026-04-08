@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./GuessInput.scss";
+import "../styles/GuessInput.scss";
 
 const guessPlaceholder: string = "Gissa ordet?";
 const guessInputText: string = "Mata in din gissning och klicka på pilen...";

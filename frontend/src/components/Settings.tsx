@@ -1,10 +1,13 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import "./Menu.scss";
-import wheel from "../assets/settings-icon.png";
-import type { settingProps } from "../../../shared/types";
+
 import ToggleDups from "./ToggleDups";
 import WordLengthSelector from "./wordLengthSelector";
+
+import '../styles/Menu.scss';
+import wheel from "../assets/settings-icon.png";
+
+import type { settingProps } from "../../../shared/types";
 
 Modal.setAppElement("#root");
 

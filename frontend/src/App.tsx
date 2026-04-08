@@ -1,9 +1,12 @@
 import './App.scss';
-import Header from './components/Header.tsx';
+
 import { useState } from 'react';
 import { Route, Routes } from 'react-router';
+
+import Header from './components/Header.tsx';
 import Game from './components/Game.tsx';
 import StartPage from './components/StartPage.tsx';
+import Footer from './components/Footer.tsx';
 
 export default function App() {
   const [numberOfGuesses, setNumberOfGuesses] = useState(6);
@@ -35,6 +38,7 @@ export default function App() {
           />} 
         />
       </Routes>
+      <Footer />
     </>
   )
 }

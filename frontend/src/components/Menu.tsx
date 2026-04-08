@@ -1,4 +1,4 @@
-import "./Menu.scss";
+import '../styles/Menu.scss';
 import menuicon from "../assets/menu-icon.png";
 import { useState } from "react";
 import Modal from "react-modal";
@@ -59,7 +59,7 @@ export default function Menu() {
           </p>
 
           <p>
-            <a href="/highscore"
+            <a href="/highscores"
               onClick={() => {
                 setModalState(false);
               }}

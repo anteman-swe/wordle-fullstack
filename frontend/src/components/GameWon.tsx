@@ -6,11 +6,12 @@ interface FyrverkeriModalProps {
   isOpen: boolean;
   onClose: () => void;
   postHighscore: (name: string) => void;
+  durationVar: number;
 }
 
-const GameWon: React.FC<FyrverkeriModalProps> = ({ isOpen, onClose, postHighscore }) => {
+const GameWon: React.FC<FyrverkeriModalProps> = (
+  { isOpen, onClose, postHighscore, durationVar }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-
   if (!isOpen) return null;
 
   return (
@@ -102,6 +103,7 @@ const GameWon: React.FC<FyrverkeriModalProps> = ({ isOpen, onClose, postHighscor
         }}
       >
         <h2 style={{color: 'darkgray'}}>Grattis! du hittade ordet! 🎉</h2>
+        <p style={{fontSize: '0.8rem'}}>Din tid: {Math.ceil((durationVar+500)/1000)} s</p>
         <HighscoreInput postHighscore={postHighscore} />
         <button
           onClick={onClose}

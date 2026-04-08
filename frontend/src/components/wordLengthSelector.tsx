@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './WordLengthSelector.scss';
+import '../styles/WordLengthSelector.scss';
 
 interface WordLengthSelectorProps {
   onLengthChange?: (length: number) => void;

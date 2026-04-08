@@ -1,8 +1,12 @@
-import "./Game.scss";
+import "../styles/Game.scss";
+
 import GuessInput from "./GuessInput.tsx";
 import Matrix from "./Matrix.tsx";
 import GameWon from "./GameWon.tsx";
+import GameLost from "./GameLost.tsx";
+
 import { useMemo, useState } from "react";
+
 import type { testTuple } from "../../../shared/types.ts";
 interface gameProps {
   numberOfGuesses: number;
@@ -20,8 +24,9 @@ export default function Game(props: gameProps) {
     .map(() =>
       Array(props.numberOfChars).fill({ letter: "", result: "incorrect" }),
     );
-  const [guessMatrix, setMatrix] = useState(emptyArray);
+  const [guessMatrix, setMatrix] = useState<Array<Array<testTuple>>>(emptyArray);
   const [guessNo, setGuessNo] = useState(0);
+  const [currentGameTime, setGameTime] = useState<number>(0);
 
   const updateRow = (row: number, guessWord: Array<testTuple>) => {
     const newMatrix = [...guessMatrix];
@@ -46,27 +51,33 @@ export default function Game(props: gameProps) {
     }
   }
 
-  async function endTheGame(gId: string): Promise<void> {
-    await fetch('/api/end-game', {
+  async function endTheGame(gId: string): Promise<number> {
+    const endGame: Response = await fetch('/api/end-game', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({gameId: gId})
     });
+    const endAnswer = await endGame.json();
+    console.log('Ending game:', endAnswer)
+    return Number(endAnswer.duration);
   }
 
   async function testGuess(word: string) {
-    if (guessNo >= props.numberOfGuesses && !endOfGame) {
+    if (guessNo + 1 >= props.numberOfGuesses && !endOfGame) {
       setEnd(true);
     }
-    // TODO: Vad ska hända när spelet är slut utan lösning?
 
     if (word.length > props.numberOfChars) {
       word = word.slice(0, props.numberOfChars);
     }
+
     setGuessNo(guessNo + 1);
+
     const postArray: unknown = await postGuessWord(word, gameID);
     const resultArray = postArray as Array<testTuple>;
+    
     updateRow(guessNo, resultArray);
+    
     const victory: boolean = resultArray.every(checkCorrect);
     if (victory) {
       setTimeout(handleWinning, 600);
@@ -77,26 +88,28 @@ export default function Game(props: gameProps) {
     return element.result === "correct";
   }
 
-  const handleWinning = (): void => {
-    endTheGame(gameID);
+  const handleWinning = async (): Promise<void> => {
+    const gameTime = await endTheGame(gameID);
+    setGameTime(gameTime);
     setVictory(true);
-    setMatrix(emptyArray);
   };
 
   const closeCelebration = (): void => {
     setVictory(false);
     setGuessNo(0);
+    setMatrix(emptyArray);
     startTheGame(props.numberOfChars, props.allowDups);
   };
 
-  const postHighscore = (name: string) => {
+  const closeLostGame = (): void => {
+    setEnd(false);
+    setGuessNo(0);
+    setMatrix(emptyArray);
+    startTheGame(props.numberOfChars, props.allowDups);
+  }
+  
+  const postHighscore = (name: string): void => {
     postName(name, gameID, guessNo, guessMatrix[0].length);
-    console.log(
-      "Namn:", name, 
-      'ID:', gameID, 
-      'Gissningar:', guessNo, 
-      'Ordlängd:', guessMatrix[0].length
-    );
     closeCelebration();
   };
 
@@ -112,7 +125,11 @@ export default function Game(props: gameProps) {
         isOpen={gameVictory}
         onClose={closeCelebration}
         postHighscore={postHighscore}
+        durationVar={currentGameTime}
       />
+      <GameLost 
+        isOpen={endOfGame}
+        onClose={closeLostGame} />
     </>
   );
 }
@@ -133,7 +150,7 @@ async function postName(
   guesses: number, 
   chars: number,
 ) {
-  const gameSaved: Response = await fetch("/api/highscore", {
+  const gameSaved: Response = await fetch("/api/highscores", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ 
@@ -144,6 +161,5 @@ async function postName(
     }),
   });
   const saveAnswer = await gameSaved.json();
-  console.log(saveAnswer);
   return saveAnswer;
 }

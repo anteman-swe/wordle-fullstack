@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './ToogleDups.scss';
+import '../styles/ToogleDups.scss';
 
 interface ToggleDupsProps {
     onDupsToggle: (toggle: boolean) => void;

@@ -1,4 +1,4 @@
-import './Header.scss';
+import '../styles/Header.scss';
 import headline from '../assets/headline.png';
 import Navigation from './Navigation';
 import type { settingProps } from '../../../shared/types';

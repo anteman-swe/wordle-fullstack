@@ -1,4 +1,4 @@
-import './StartGameBtn.scss';
+import '../styles/StartGameBtn.scss';
 import smiley from '../assets/smiley.png';
 import { useNavigate } from 'react-router';
 export default function StartGameBtn() {
