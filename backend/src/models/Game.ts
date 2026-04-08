@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 interface IGame extends Document {
   gameId: string;
   startTime: Date;
+  word: string;
   endTime?: Date;
   duration?: number;
 }
@@ -10,6 +11,7 @@ interface IGame extends Document {
 const GameSchema: Schema = new Schema({
   gameId: { type: String, required: true, unique: true },
   startTime: { type: Date, required: true },
+  word: {type: String, required: true},
   endTime: { type: Date },
   duration: { type: Number }, // i millisekunder
 });

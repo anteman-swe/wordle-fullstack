@@ -64,7 +64,7 @@ export default function Game(props: gameProps) {
       word = word.slice(0, props.numberOfChars);
     }
     setGuessNo(guessNo + 1);
-    const postArray: unknown = await postGuessWord(word);
+    const postArray: unknown = await postGuessWord(word, gameID);
     const resultArray = postArray as Array<testTuple>;
     updateRow(guessNo, resultArray);
     const victory: boolean = resultArray.every(checkCorrect);
@@ -117,11 +117,11 @@ export default function Game(props: gameProps) {
   );
 }
 
-async function postGuessWord(testWord: string) {
+async function postGuessWord(testWord: string, gameId: string) {
   const result: Response = await fetch("/api/testword", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ word: testWord }),
+    body: JSON.stringify({ gameId: gameId, word: testWord }),
   });
   const resJson = await result.json();
   return resJson;

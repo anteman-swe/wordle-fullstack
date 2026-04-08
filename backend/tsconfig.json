@@ -12,7 +12,7 @@
     },
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "node16",
     "target": "esnext",
     "types": [],
     // For nodejs:
@@ -45,5 +45,10 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+    "moduleResolution": "node16",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
   }
 }

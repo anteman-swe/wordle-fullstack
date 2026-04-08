@@ -1,19 +1,21 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import * as ejs from 'ejs';
+
 import type { Request, Response } from "express";
 import type { Message, testTuple } from "../../shared/types.ts";
 
-import wordCheck from "../word-logic/wordCheck .js";
-import wordSelect from "../word-logic/wordSelect.js";
+import wordCheck from "../word-logic/wordCheck.ts";
+import wordSelect from "../word-logic/wordSelect.ts";
 import { readFile } from "node:fs/promises";
 
-import { connectToMongoDB } from "./dbConnection.js";
-import Game from "./models/Game.js";
-import Highscore from "./models/Highscore.js";
+import { connectToMongoDB } from "./dbConnection.ts";
+
+import Game from "./models/Game.ts";
+import Highscore from "./models/Highscore.ts";
 
 let wordlist: Array<string>;
-let secretWord: string = "";
 
 try {
   const pathToWords = new URL(
@@ -31,7 +33,11 @@ const generateGameID = (): string =>
   Math.random().toString(36).substring(2, 10);
 
 const app = express();
-const PORT = 5080;
+const PORT = process.env.SERVER_PORT || 5080;
+
+app.engine("ejs", ejs.renderFile);
+app.set("view engine", "ejs");
+app.set("views", "./backend/views");
 
 app.use(
   cors({
@@ -54,16 +60,15 @@ app.get("/api/start-game", async (req: Request, res: Response) => {
   let response: Message = { text: "", gameID: "", timestamp: "" };
   const numberOfChars: number = Number(req.query.wl);
   const allowDups: boolean = Boolean(req.query.dup);
-  const word = wordSelect(wordlist, numberOfChars, allowDups);
-
+  
   const gameId = generateGameID();
   const startTime = new Date();
-  const game = new Game({ gameId, startTime });
+  const word = await wordSelect(wordlist, numberOfChars, allowDups);
+  
+  const game = new Game({ gameId, startTime, word });
   await game.save();
 
-  console.log(word);
   if (word !== null) {
-    secretWord = word;
     response = {
       text: "Secret word is selected",
       gameID: gameId,
@@ -124,12 +129,23 @@ app.post("/api/highscore", async (req: Request, res: Response) => {
   res.json(gameId);
 });
 
-app.post("/api/testword", (req: Request, res: Response) => {
-  const wordToTest: string = req.body.word;
-  const testResult: Array<testTuple> = wordCheck(wordToTest, secretWord);
-  res.status(200).json(testResult);
-  res.end();
+app.post("/api/testword", async (req: Request, res: Response) => {
+  const { gameId, word } = req.body;
+  console.log('Ord att testa:', word)
+  const game = await Game.findOne({ gameId });
+  console.log('Game i test:', game);
+  if (!game) {
+    return res.status(404).json({ error: "Game not found" });
+  } else {
+    const secretWord = game.word;
+    console.log(secretWord);
+    const testResult: Array<testTuple> = wordCheck(word, secretWord);
+    res.status(200).json(testResult);
+    res.end();
+  }
 });
+
+app.use('/about', express.static('./backend/pages/about.html'));
 
 app.listen(PORT, () => {
   console.log(`TS-Servern körs på http://localhost:${PORT}`);
