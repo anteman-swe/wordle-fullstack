@@ -13,19 +13,30 @@ input[type="range"]::-webkit-slider-thumb {
 .sliderStyles {
     -webkit-appearance: none;
     appearance: none;
-    width: 50%;
+    width: 90%;
     height: 20px;
     border-radius: 10px;
     background: v.$button-bg;
     padding: 0;
     margin: 10px 0;
+    cursor: pointer;
+    @media screen and (min-width: 640px) {
+        width: 60%;
+    }
 }
 
 .wordLengthContainer {
-    display: flex;  
+    width: 100%;
+    display: flex;
+    flex-direction: column;  
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    @media screen and (min-width: 640px) {
+        margin: auto;
+        width: 60%;
+        flex-direction: row;
+    }
     label {
         font-size: 1rem;
     }

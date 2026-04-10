@@ -63,10 +63,7 @@ export default function Game(props: gameProps) {
   }
 
   async function testGuess(word: string) {
-    if (guessNo + 1 >= props.numberOfGuesses && !endOfGame) {
-      setEnd(true);
-    }
-
+    
     if (word.length > props.numberOfChars) {
       word = word.slice(0, props.numberOfChars);
     }
@@ -79,8 +76,10 @@ export default function Game(props: gameProps) {
     updateRow(guessNo, resultArray);
     
     const victory: boolean = resultArray.every(checkCorrect);
-    if (victory) {
-      setTimeout(handleWinning, 600);
+    if (victory && guessNo + 1 <= props.numberOfGuesses) {
+      setTimeout(handleWinning, 300);
+    } else if (guessNo + 1 >= props.numberOfGuesses && !victory) {
+      setTimeout(handleLost, 400);
     }
   }
 
@@ -93,6 +92,10 @@ export default function Game(props: gameProps) {
     setGameTime(gameTime);
     setVictory(true);
   };
+
+  const handleLost = (): void => {
+    if(!gameVictory) setEnd(true);
+  }
 
   const closeCelebration = (): void => {
     setVictory(false);

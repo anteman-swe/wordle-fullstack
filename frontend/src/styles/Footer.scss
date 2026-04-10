@@ -1,9 +1,50 @@
+@use "./variables" as v;
+
 .footer-container {
-    background-color: yellowgreen;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 1198px;
+  //   background-color: yellowgreen;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 1198px;
+  height: 180px;
+  border-top: solid 1px black;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  @media screen and (min-width: 640px) {
     height: 120px;
-    border-top: solid 1px black;
+    flex-direction: row;
+  }
+  img {
+    width: 100px;
+    height: 35px;
+    margin-top: 2rem;
+    @media screen and (min-width: 640px) {
+      width: 160px;
+      height: 55px;
+      margin-top: 0;
+      margin-right: 2rem;
+    }
+  }
+  p {
+    margin-bottom: 4rem;
+    @media screen and (min-width: 640px) {
+        margin: 3rem;
+    }
+  }
+  .footerlinks {
+    display: none;
+    @media screen and (min-width: 640px) {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      font-size: 0.7rem;
+      margin-left: 2rem;
+    }
+    a {
+      color: v.$text-color;
+    }
+  }
 }

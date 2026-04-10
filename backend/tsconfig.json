@@ -3,7 +3,8 @@
   "compilerOptions": {
     // File Layout
     // "rootDir": "./src",
-    // "outDir": "./dist",
+    // "rootDirs": ["./src", "./word-logic"],
+    "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["../shared/*"],
@@ -14,16 +15,16 @@
     // See also https://aka.ms/tsconfig/module
     "module": "node16",
     "target": "esnext",
-    "types": [],
+    // "types": [],
     // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
+    "lib": ["esnext"],
+    "types": ["node"],
     // and npm install -D @types/node
 
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
@@ -48,7 +49,8 @@
     "moduleResolution": "node16",
     "esModuleInterop": true,
     "allowJs": true,
-    "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true,
-  }
+    // "emitDeclarationOnly": true,
+    // "allowImportingTsExtensions": true,
+  },
+  "include": ["src/**/*"]
 }

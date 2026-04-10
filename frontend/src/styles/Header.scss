@@ -1,7 +1,9 @@
+@use './variables' as v;
+
 .header {
     display: flex;
     flex-direction: column;
-    border-bottom: solid 1px #35393C;
+    border-bottom: solid 1px v.$text-color;
     padding: 1rem 0;
     img {
         margin-bottom: 1.1rem;

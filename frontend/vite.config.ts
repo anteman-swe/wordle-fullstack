@@ -14,7 +14,7 @@ export default defineConfig({
         target: 'http://localhost:5080 ',
         changeOrigin: true,
       },
-      '/highscore': {
+      '/highscores': {
         target: 'http://localhost:5080',
         changeOrigin: true,
       }

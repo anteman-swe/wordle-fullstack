@@ -26,7 +26,7 @@ export default function Menu() {
         onRequestClose={() => setModalState(false)}
         className="menuModal"
       >
-        <div className="menuList" style={{width: "20%"}}>
+        <div className="menuList" style={{width: "50%"}}>
           <h2>Meny</h2>
           <p>
             <Link
