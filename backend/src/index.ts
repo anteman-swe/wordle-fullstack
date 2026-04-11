@@ -21,9 +21,11 @@ let wordlist: Array<string>;
 
 const __filename: string = fileURLToPath(import.meta.url); // Gives the absolute path to this file, index.ts, from filesystem
 const __dirname: string = path.dirname(__filename); // This directory, where this, index.ts is located
-const distPath: string = path.join(__dirname, "..", "dist"); // from this dir up 1 level in to 'dist' = "../dist"
+const distPath: string = path.join(__dirname, "..", "..", "frontend", "dist"); // From this dir up 2 levels, then in to 'dist' = "../frontend/dist"
 const viewsPath: string = path.join(__dirname, "..", "views"); // Route for the SSR pages templates
 const staticPages:string = path.join(__dirname, "..", "pages"); // Route to the static pages
+const stylingDir: string = path.join(__dirname, "..", "styling"); // Route to styling
+const assetsDir: string = path.join(__dirname, "..", "assets"); // Route to assets
 
 try {
   const pathToWords = path.join(__dirname, "..", "wordlist", "svenska-ord-washed.json"); // from this directory up 1 level into wordlist to find svenska-ord-washed
@@ -55,7 +57,12 @@ app.use(express.json());
 // Static route for about page
 app.use('/about', express.static(staticPages + '/about.html'));
 
+// Static route to distribution
 app.use('/', express.static(distPath));
+
+// Static route to 
+app.use('/css', express.static(stylingDir));
+app.use('/assets', express.static(assetsDir));
 
 // ####### API Server for game #######
 // Adress för att testa API:
@@ -72,12 +79,13 @@ app.get("/api/data", (req: Request, res: Response) => {
 app.get("/api/start-game", async (req: Request, res: Response) => {
   let response: Message = { text: "", gameID: "", timestamp: "" };
   const numberOfChars: number = Number(req.query.wl);
-  const allowDups: boolean = Boolean(req.query.dup);
+  const dups: boolean = (req.query.dup === 'true'? true : false);
   const gameId = generateRandomID(8);
   const startTime = new Date();
-  const word = wordSelect(wordlist, numberOfChars, allowDups);
+  const word = wordSelect(wordlist, numberOfChars, dups);
+  // TODO: Remove console.log
   console.log('Ordet:', word);
-  const game = new Game({ gameId, startTime, word });
+  const game = new Game({ gameId, startTime, word, dups });
   await game.save();
 
   if (word !== null) {
@@ -118,7 +126,7 @@ app.post("/api/end-game", async (req: Request, res: Response) => {
 
 // Adress to post Gamer Name to the highscore list
 app.post("/api/highscores", async (req: Request, res: Response) => {
-  const { gameId, gamerName, tries, chars } = req.body;
+  const { gameId, dups, gamerName, tries, chars } = req.body;
   const game = await Game.findOne({ gameId });
   let duration: number;
   if (!game) {
@@ -132,6 +140,7 @@ app.post("/api/highscores", async (req: Request, res: Response) => {
   }
   const highscore = new Highscore();
   highscore.gameId = gameId;
+  highscore.dups = dups;
   highscore.duration = duration;
   highscore.numberOfChars = chars;
   highscore.numberOfTries = tries;
@@ -155,10 +164,23 @@ app.post("/api/testword", async (req: Request, res: Response) => {
 });
 
 // Adress to render highscore page
-app.get('/highscores', async (req: Request, res: Response) => {
-  const hresponse = await Highscore.find({})
+app.get([
+  '/highscores/:length',
+  '/highscores/:length/:duplicates',
+  '/highscores'],
+  async (req: Request, res: Response) => {
+  const { length, duplicates } = req.params;
+  const dbQuery: any = {};
+  if(length && length !== 'all') {
+    dbQuery.numberOfChars = length;
+  }
+  if(duplicates && duplicates !== 'all') {
+    dbQuery.dups = duplicates === 'true'
+  }
+  const hresponse = await Highscore.find(dbQuery)
   .sort({duration: 1, numberOfChars: -1, numberOfTries: 1})
   .exec();
+  // res.send(`Dups: ${duplicates}`);
   res.render("highscore",{highscores: hresponse});
 });
 

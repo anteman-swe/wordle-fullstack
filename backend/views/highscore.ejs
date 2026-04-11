@@ -2,13 +2,14 @@
     <h1>Highscore i Wordle på Svenska</h1>
     <table>
         <tr>
-            <th>Namn</th><th>Tid</th><th>Ordlängd</th><th>Antal försök</th>
+            <th>Namn</th><th>Tid</th><th>Ordlängd</th><th>Bokstavsdubletter?</th><th>Antal försök</th>
         </tr>
     <% for (let index=0; index < highscores.length; index++) { const element=highscores[index]; %>
         <tr>
             <td><%- element.gamerName %></td>
             <td><%- Math.floor(element.duration/100 + 0.5)/10 + "s" %></td>
             <td><%- element.numberOfChars %></td>
+            <td><%- element.dups===true? 'Ja' : 'Nej' %></td>
             <td><%- element.numberOfTries %></td>
         </tr>
         <% }; %>

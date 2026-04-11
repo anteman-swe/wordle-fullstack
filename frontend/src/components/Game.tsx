@@ -58,7 +58,6 @@ export default function Game(props: gameProps) {
       body: JSON.stringify({gameId: gId})
     });
     const endAnswer = await endGame.json();
-    console.log('Ending game:', endAnswer)
     return Number(endAnswer.duration);
   }
 
@@ -112,7 +111,7 @@ export default function Game(props: gameProps) {
   }
   
   const postHighscore = (name: string): void => {
-    postName(name, gameID, guessNo, guessMatrix[0].length);
+    postName(name, gameID, guessNo, props.numberOfChars, props.allowDups);
     closeCelebration();
   };
 
@@ -152,6 +151,7 @@ async function postName(
   gameID: string, 
   guesses: number, 
   chars: number,
+  dups: boolean,
 ) {
   const gameSaved: Response = await fetch("/api/highscores", {
     method: "POST",
@@ -160,7 +160,8 @@ async function postName(
       gameId: gameID, 
       gamerName: name,
       tries: guesses,
-      chars: chars
+      chars: chars,
+      dups: dups
     }),
   });
   const saveAnswer = await gameSaved.json();
