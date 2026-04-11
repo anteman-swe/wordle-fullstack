@@ -60,7 +60,7 @@ app.use('/about', express.static(staticPages + '/about.html'));
 // Static route to distribution
 app.use('/', express.static(distPath));
 
-// Static route to 
+// Static routes to styling and assets
 app.use('/css', express.static(stylingDir));
 app.use('/assets', express.static(assetsDir));
 

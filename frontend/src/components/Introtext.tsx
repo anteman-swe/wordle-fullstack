@@ -6,7 +6,7 @@ export default function Introtext() {
       <h1>Spela Wordle!</h1>
       <div className="intro">
         <ul>
-          <li>Välj ordlängd och antal försök under spel.</li>
+          <li>Välj ordlängd och antal försök i spel-menyn ovan.</li>
           <li>Ju kortare tid desto bättre bättre placering i highscore-listan.</li>
           <li>När du är redo klicka på start!</li>
         </ul>
