@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router';
 import Header from './components/Header.tsx';
 import Game from './components/Game.tsx';
 import StartPage from './components/StartPage.tsx';
+import Rules from './components/Rules.tsx';
 import Footer from './components/Footer.tsx';
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
             allowDups={allowDups} 
           />} 
         />
+        <Route path='/rules' element={<Rules />} />
       </Routes>
       <Footer />
     </>

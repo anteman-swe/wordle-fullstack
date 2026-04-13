@@ -1,0 +1,31 @@
+.rules {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    background-color: #00c954;
+    padding: 0.8rem;
+    color: #35393c;
+    text-align: center;
+    width: 90%;
+    max-width: 820px;
+    margin: 3rem 0;
+    border-bottom: solid 3px #ffe100;
+    border-right: solid 3px #ffe100;
+    border-left: solid 3px #ffe100;
+    border-radius: 15px;
+  }
+  ul {
+    width: 90%;
+    max-width: 820px;
+    text-align: left;
+    list-style: square;
+    font-size: 1.2rem;
+    color:#35393c;
+    padding-bottom: 1rem;
+    li {
+        margin: 2rem;
+    }
+  }
+}

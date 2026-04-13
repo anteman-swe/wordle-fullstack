@@ -2,7 +2,7 @@
 
 .footer-container {
   //   background-color: yellowgreen;
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   max-width: 1198px;
@@ -13,6 +13,7 @@
   justify-content: space-between;
   align-items: center;
   @media screen and (min-width: 640px) {
+    position:absolute;
     height: 120px;
     flex-direction: row;
   }
