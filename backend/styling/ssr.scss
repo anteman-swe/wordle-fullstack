@@ -1,0 +1,208 @@
+body {
+  background-color: #a4d8ff;
+  margin: auto;
+  max-width: 1200px;
+  height: 100dvh;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+}
+
+.header {
+  // background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 240px;
+  .header-image {
+    width: 300px;
+    height: 100px;
+    margin-top: 2rem;
+  }
+  .navigation {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 1rem;
+      background-color: #00c954;
+      border: solid 2px #ffe100;
+      border-radius: 10px;
+      padding: 0.8rem;
+      cursor: pointer;
+      box-shadow: 1px 1px 5px gray;
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+.main-content {
+  .head-line {
+    display: flex;
+    justify-content: center;
+    h1 {
+      background-color: #00c954;
+      padding: 0.2rem;
+      color: #35393c;
+      text-align: center;
+      width: 90%;
+      max-width: 820px;
+      margin: 3rem 0;
+      border-bottom: solid 3px #ffe100;
+      border-right: solid 3px #ffe100;
+      border-left: solid 3px #ffe100;
+      border-radius: 15px;
+    }
+  }
+  .filters {
+    margin: auto;
+    width: 90%;
+    max-width: 800px;
+    height: 100dvh;
+    background-color: #00c954;
+    border-left: solid 3px #ffe100;
+    border-right: solid 3px #ffe100;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .filter-group {
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      @media screen and (min-width: 640px) {
+        gap: 2rem;
+      }
+      span {
+        content-visibility: hidden;
+        @media screen and (min-width: 640px) {
+            content-visibility: auto;
+        }
+      }
+      .filter-link {
+        display: inline-block;
+        padding: 6px 12px;
+        color: white;
+        text-decoration: none;
+        background-color: #00642a;
+        border: solid 2px #4a4a4c;
+        border-radius: 4px;
+        font-size: 0.9em;
+        transition: background-color 0.2s;
+        &:hover {
+          background-color: #b19d0a;
+        }
+
+        &.active {
+          background-color: #ffe100;
+          color: black;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  table {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    // border: solid 1px black;
+    th {
+      width: 25%;
+      text-align: left;
+      border: solid 1px gray;
+      &:last-child {
+        display: none;
+        @media screen and (min-width: 640px) {
+          display: table-cell;
+        }
+      }
+      @media screen and (min-width: 640px) {
+        width: 20%;
+      }
+    }
+    tr {
+      height: 2rem;
+      &:nth-child(even) {
+        background-color: lightsteelblue;
+        margin: 0;
+      }
+      td {
+        border: solid 1px gray;
+        margin: 0;
+        padding-left: 0.6rem;
+        &:first-child {
+          font-weight: bold;
+        }
+        &:last-child {
+          display: none;
+          @media screen and (min-width: 640px) {
+            display: table-cell;
+          }
+        }
+      }
+    }
+  }
+}
+.footer-container {
+  //   background-color: yellowgreen;
+  margin-top: 1rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  max-width: 1198px;
+  height: 180px;
+  border-top: solid 1px black;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  @media screen and (min-width: 640px) {
+    height: 120px;
+    flex-direction: row;
+    position: absolute;
+  }
+  img {
+    width: 100px;
+    height: 35px;
+    margin-top: 2rem;
+    @media screen and (min-width: 640px) {
+      width: 160px;
+      height: 55px;
+      margin-top: 0;
+      margin-right: 2rem;
+    }
+  }
+  p {
+    margin-bottom: 4rem;
+    color: gray;
+    @media screen and (min-width: 640px) {
+      margin: 3rem;
+    }
+  }
+  .footerlinks {
+    display: none;
+    @media screen and (min-width: 640px) {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      font-size: 0.7rem;
+      margin-left: 2rem;
+    }
+    a {
+      color: #35393c;
+    }
+  }
+}

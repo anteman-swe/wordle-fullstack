@@ -169,19 +169,29 @@ app.get([
   '/highscores/:length/:duplicates',
   '/highscores'],
   async (req: Request, res: Response) => {
-  const { length, duplicates } = req.params;
+  let { length, duplicates } = req.params;
   const dbQuery: any = {};
+  
   if(length && length !== 'all') {
     dbQuery.numberOfChars = length;
+  }
+  if(!length) {
+    length = 'all';
   }
   if(duplicates && duplicates !== 'all') {
     dbQuery.dups = duplicates === 'true'
   }
+  if(!duplicates) {
+    duplicates = 'all';
+  }
   const hresponse = await Highscore.find(dbQuery)
   .sort({duration: 1, numberOfChars: -1, numberOfTries: 1})
   .exec();
-  // res.send(`Dups: ${duplicates}`);
-  res.render("highscore",{highscores: hresponse});
+  res.render("highscore",{
+    highscores: hresponse,
+    currentLength: length, 
+    currentDups: duplicates
+  });
 });
 
 // All other paths of url's will be returned to index.html a k a homepage
