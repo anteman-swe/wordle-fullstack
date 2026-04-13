@@ -65,7 +65,6 @@ body {
     margin: auto;
     width: 90%;
     max-width: 800px;
-    height: 100dvh;
     background-color: #00c954;
     border-left: solid 3px #ffe100;
     border-right: solid 3px #ffe100;
@@ -73,23 +72,31 @@ body {
     border-radius: 8px;
     margin-bottom: 30px;
     h3 {
-        text-align: center;
-        margin-bottom: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
     }
     .filter-group {
       margin: 10px 0;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: left;
       align-items: center;
       gap: 0.5rem;
       @media screen and (min-width: 640px) {
+        flex-direction: row;
+        justify-content: center;
         gap: 2rem;
       }
-      span {
-        content-visibility: hidden;
+      div {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
         @media screen and (min-width: 640px) {
-            content-visibility: auto;
+          gap: 1.5rem;
         }
+      }
+      span {
+        width: 100px;
       }
       .filter-link {
         display: inline-block;

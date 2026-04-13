@@ -9,31 +9,35 @@
 
                 <div class="filter-group">
                     <span>Ordlängd: </span>
-                    <% [3, 4, 5, 6, 7, 8].forEach(l=> { %>
-                        <a href="/highscores/<%= l %>/<%= currentDups %>"
-                            class="filter-link <%= currentLength == l ? 'active' : '' %>">
-                            <%= l %>
-                        </a>
-                        <% }) %>
-                        <a href="/highscores/all/all"
-                            class="filter-link <%= currentLength == 'all' ? 'active' : '' %>">
-                            Alla
-                        </a>
+                    <div>
+                        <% [3, 4, 5, 6, 7, 8].forEach(l=> { %>
+                            <a href="/highscores/<%= l %>/<%= currentDups %>"
+                                class="filter-link <%= currentLength == l ? 'active' : '' %>">
+                                <%= l %>
+                            </a>
+                            <% }) %>
+                                <a href="/highscores/all/all"
+                                    class="filter-link <%= currentLength == 'all' ? 'active' : '' %>">
+                                    Alla
+                                </a>
+                    </div>
                 </div>
                 <div class="filter-group">
                     <span>Visa: </span>
-                    <a href="/highscores/<%= currentLength %>/all"
-                        class="filter-link <%= currentDups === 'all' ? 'active' : '' %>">
-                        Alla ord
-                    </a>
-                    <a href="/highscores/<%= currentLength %>/false"
-                        class="filter-link <%= currentDups === 'false' ? 'active' : '' %>">
-                        Unika bokstäver
-                    </a>
-                    <a href="/highscores/<%= currentLength %>/true"
-                        class="filter-link <%= currentDups === 'true' ? 'active' : '' %>">
-                        Dubletter tillåtna
-                    </a>
+                    <div>
+                        <a href="/highscores/<%= currentLength %>/all"
+                            class="filter-link <%= currentDups === 'all' ? 'active' : '' %>">
+                            Alla ord
+                        </a>
+                        <a href="/highscores/<%= currentLength %>/false"
+                            class="filter-link <%= currentDups === 'false' ? 'active' : '' %>">
+                            Unika bokstäver
+                        </a>
+                        <a href="/highscores/<%= currentLength %>/true"
+                            class="filter-link <%= currentDups === 'true' ? 'active' : '' %>">
+                            Dubletter tillåtna
+                        </a>
+                    </div>
                 </div>
             </div>
             <table>

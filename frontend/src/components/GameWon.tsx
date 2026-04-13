@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef, type FC } from 'react';
 import { Fireworks } from '@fireworks-js/react';
 import HighscoreInput from './HighscoreInput';
 
@@ -9,7 +9,7 @@ interface FyrverkeriModalProps {
   durationVar: number;
 }
 
-const GameWon: React.FC<FyrverkeriModalProps> = (
+const GameWon: FC<FyrverkeriModalProps> = (
   { isOpen, onClose, postHighscore, durationVar }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   if (!isOpen) return null;

@@ -78,22 +78,30 @@ body {
 .main-content .filters .filter-group {
   margin: 10px 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: left;
   align-items: center;
   gap: 0.5rem;
 }
 @media screen and (min-width: 640px) {
   .main-content .filters .filter-group {
+    flex-direction: row;
+    justify-content: center;
     gap: 2rem;
   }
 }
-.main-content .filters .filter-group span {
-  content-visibility: hidden;
+.main-content .filters .filter-group div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
 @media screen and (min-width: 640px) {
-  .main-content .filters .filter-group span {
-    content-visibility: auto;
+  .main-content .filters .filter-group div {
+    gap: 1.5rem;
   }
+}
+.main-content .filters .filter-group span {
+  width: 100px;
 }
 .main-content .filters .filter-group .filter-link {
   display: inline-block;

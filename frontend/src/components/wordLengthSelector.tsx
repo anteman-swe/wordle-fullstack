@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, type FC } from 'react';
 import '../styles/WordLengthSelector.scss';
 
 interface WordLengthSelectorProps {
@@ -6,7 +6,7 @@ interface WordLengthSelectorProps {
   presentLength: number;
 }
 
-const WordLengthSelector: React.FC<WordLengthSelectorProps> = ({ onLengthChange, presentLength }) => {
+const WordLengthSelector: FC<WordLengthSelectorProps> = ({ onLengthChange, presentLength }) => {
   const [wordLength, setWordLength] = useState<number>(presentLength);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

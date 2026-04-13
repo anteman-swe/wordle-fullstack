@@ -5,7 +5,7 @@ import type { settingProps } from '../../../shared/types';
 import type { ReactNode } from 'react';
 
 export default function Header(
-    {updateGameStates, presentSettings}: settingProps): ReactNode{
+    {updateGameStates, presentSettings}: settingProps): ReactNode {
     return (
         <div className='header'>
             <img src={headline} />
