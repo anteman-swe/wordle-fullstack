@@ -5,7 +5,7 @@ import Matrix from "./Matrix.tsx";
 import GameWon from "./GameWon.tsx";
 import GameLost from "./GameLost.tsx";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 
 import type { testTuple } from "../../../shared/types.ts";
 interface gameProps {
@@ -14,7 +14,7 @@ interface gameProps {
   allowDups: boolean;
 }
 
-export default function Game(props: gameProps) {
+export default function Game(props: gameProps): ReactNode {
   const [endOfGame, setEnd] = useState<boolean>(false);
   const [gameVictory, setVictory] = useState<boolean>(false);
   const [gameID, setGameID] = useState<string>("");

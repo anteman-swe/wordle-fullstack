@@ -2,7 +2,8 @@ import '../styles/Footer.scss';
 import logo from '../assets/headline.png';
 
 import { Link }  from 'react-router'
-export default function Footer() {
+import type { ReactNode } from 'react';
+export default function Footer(): ReactNode {
 
     return (
         <div className='footer-container'>

@@ -1,12 +1,12 @@
 import '../styles/Menu.scss';
 import menuicon from "../assets/menu-icon.png";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Modal from "react-modal";
 import { Link } from "react-router";
 
 Modal.setAppElement("#root");
 
-export default function Menu() {
+export default function Menu(): ReactNode {
   const [modalIsOpen, setModalState] = useState(false);
 
   return (

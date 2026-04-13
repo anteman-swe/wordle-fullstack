@@ -1,6 +1,7 @@
+import type { ReactNode } from 'react';
 import '../styles/Introtext.scss';
 
-export default function Introtext() {
+export default function Introtext(): ReactNode {
   return (
     <>
       <h1>Spela Wordle!</h1>

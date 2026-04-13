@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import "../styles/GameLost.scss";
 import disappointment from "../assets/disappointed.png";
+import type { ReactNode } from "react";
 
 Modal.setAppElement("#root");
 
@@ -9,7 +10,7 @@ interface gameLostProps {
   onClose: () => void;
 }
 
-export default function GameLost({ isOpen, onClose }: gameLostProps) {
+export default function GameLost({ isOpen, onClose }: gameLostProps): ReactNode {
   return (
     <Modal
       isOpen={isOpen}

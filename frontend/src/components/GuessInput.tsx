@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import "../styles/GuessInput.scss";
 
 const guessPlaceholder: string = "Gissa ordet?";
@@ -7,7 +7,7 @@ interface guessProps {
   onGuess: (word: string) => void;
 }
 
-export default function GuessInput({ onGuess }: guessProps) {
+export default function GuessInput({ onGuess }: guessProps): ReactNode {
   const [guess, setGuess] = useState("");
 
   return (

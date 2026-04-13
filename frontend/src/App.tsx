@@ -1,6 +1,6 @@
 import './App.scss';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Route, Routes } from 'react-router';
 
 import Header from './components/Header.tsx';
@@ -9,7 +9,7 @@ import StartPage from './components/StartPage.tsx';
 import Rules from './components/Rules.tsx';
 import Footer from './components/Footer.tsx';
 
-export default function App() {
+export default function App(): ReactNode {
   const [numberOfGuesses, setNumberOfGuesses] = useState(6);
   const [numberOfChars, setNumberOfChars] = useState(5);
   const [allowDups, setAllowDups] = useState(false);

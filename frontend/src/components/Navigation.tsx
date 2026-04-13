@@ -4,12 +4,13 @@ import Menu from './Menu';
 import Settings from './Settings';
 
 import type { settingProps } from '../../../shared/types';
+import type { ReactNode } from 'react';
 
-export default function Navigation({updateGameStates, presentSettings}: settingProps) {
+export default function Navigation(
+    {updateGameStates, presentSettings}: settingProps): ReactNode {
     return (
         <div className="navigation">
             <Menu />
-            {/* <Language /> */}
             <Settings updateGameStates={updateGameStates} presentSettings={presentSettings}/>
 
         </div>

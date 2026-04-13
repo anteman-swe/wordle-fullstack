@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, type ReactNode } from "react";
 import '../styles/ToogleDups.scss';
 
 interface ToggleDupsProps {
@@ -6,7 +6,8 @@ interface ToggleDupsProps {
     allowDups: boolean;
 }
 
-const ToggleDups: React.FC<ToggleDupsProps> = ({ onDupsToggle, allowDups }) => {
+const ToggleDups: React.FC<ToggleDupsProps> = (
+  { onDupsToggle, allowDups }): ReactNode => {
   const [allowDuplicates, setAllowDuplicates] = useState(allowDups);
 
   const handleToggle = () => {

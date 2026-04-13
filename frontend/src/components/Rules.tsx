@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 import "../styles/Rules.scss";
 
-export default function Rules() {
+export default function Rules(): ReactNode {
   return (
     <>
       <div className="rules">

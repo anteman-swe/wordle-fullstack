@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import '../styles/HighscoreInput.scss';
 
 const highscorePlaceholder: string = "Ditt namn?";
@@ -8,7 +8,8 @@ interface HighscoreProps {
   postHighscore: (name: string) => void;
 }
 
-export default function HighscoreInput({ postHighscore }: HighscoreProps) {
+export default function HighscoreInput(
+    { postHighscore }: HighscoreProps):ReactNode {
     const [name, setName] = useState<string>('');
   
     return (

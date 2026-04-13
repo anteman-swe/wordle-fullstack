@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Modal from "react-modal";
 
 import ToggleDups from "./ToggleDups";
@@ -14,7 +14,7 @@ Modal.setAppElement("#root");
 export default function Settings({
   updateGameStates,
   presentSettings,
-}: settingProps) {
+}: settingProps): ReactNode {
   const [modalIsOpen, setModalState] = useState<boolean>(false);
 
   function onLengthChange(value: number) {

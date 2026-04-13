@@ -1,10 +1,11 @@
 import "../styles/Matrix.scss";
 import type { testTuple } from '../../../shared/types';
+import type { ReactNode } from "react";
 interface matrixProps {
     guessMatrix: Array<Array<testTuple>>
 };
 
-export default function Matrix({guessMatrix}: matrixProps) {
+export default function Matrix({guessMatrix}: matrixProps): ReactNode {
     
     return (
         <div className="wordmatrix">
