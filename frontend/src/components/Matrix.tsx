@@ -14,7 +14,7 @@ export default function Matrix({guessMatrix}: matrixProps): ReactNode {
                     {row.map((char, charIndex) => (
                         <div key={charIndex} 
                         className="matrixsquare" 
-                        style={{backgroundColor: char.result == 'correct' ? 'green' : char.result == 'misplaced' ? 'yellow' : 'gray'}}>
+                        style={{backgroundColor: char.result == 'correct' ? 'green' : char.result == 'misplaced' ? 'yellow' : char.result == 'incorrect' ? 'red': 'gray'}}>
                             {char.letter}
                         </div>
                     ))}

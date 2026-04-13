@@ -8,6 +8,7 @@ import GameLost from "./GameLost.tsx";
 import { useMemo, useState, type ReactNode } from "react";
 
 import type { testTuple } from "../../../shared/types.ts";
+import GameExplanation from "./GameExplanation.tsx";
 interface gameProps {
   numberOfGuesses: number;
   numberOfChars: number;
@@ -22,7 +23,7 @@ export default function Game(props: gameProps): ReactNode {
   const emptyArray = Array(props.numberOfGuesses)
     .fill(null)
     .map(() =>
-      Array(props.numberOfChars).fill({ letter: "", result: "incorrect" }),
+      Array(props.numberOfChars).fill({ letter: "", result: "unused" }),
     );
   const [guessMatrix, setMatrix] = useState<Array<Array<testTuple>>>(emptyArray);
   const [guessNo, setGuessNo] = useState(0);
@@ -123,6 +124,7 @@ export default function Game(props: gameProps): ReactNode {
     <>
       <GuessInput onGuess={testGuess} />
       <Matrix guessMatrix={guessMatrix} />
+      <GameExplanation />
       <GameWon
         isOpen={gameVictory}
         onClose={closeCelebration}
@@ -136,6 +138,7 @@ export default function Game(props: gameProps): ReactNode {
   );
 }
 
+// Functions outside component
 async function postGuessWord(testWord: string, gameId: string) {
   const result: Response = await fetch("/api/testword", {
     method: "POST",
