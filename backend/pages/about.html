@@ -27,7 +27,10 @@
     </div>
   </header>
   <section class="about-text">
-    <h1>Om projektet: Wordle på svenska – Fullstack</h1>
+    <div class="head-line">
+      <h1>Wordle på svenska - Fullstack</h1><h2>Om projektet:</h2>
+    </div>
+    
     <p>
       Välkommen till min tolkning av det klassiska ordspelet Wordle! Detta är ett
       projekt skapat som en del av kursen Javascript - fullstack inom ramen
@@ -42,7 +45,7 @@
     <h4>För att göra det extra utmanande har jag implementerat följande:</h4>
     <p>
       <em>Anpassningsbara regler:</em>
-      Man kan själv välja ordlängd och om ordet får innehålla dubbletter av
+      Man kan själv välja ordlängd, 3 - 8 bokstäver och om ordet får innehålla dubbletter av
       bokstäver.
     </p>
     <p>
@@ -50,25 +53,25 @@
       servern. Det går alltså inte att "tjuvkika" i webbläsarens konsol för att
       hitta rätt svar.
     </p>
-    <p><em>Highscore:</em> När man har knäckt ordet sparas tiden och användarens
-      spel-inställningar i databasen, så att man kan mäta sina krafter mot andra spelare.
+    <p><em>Highscore:</em> När man har knäckt ordet kan man välja att spara tiden och användarens
+      namn och spel-inställningar i databasen, så att man kan mäta sina krafter mot andra spelare.
     </p>
     </p>
     <h2>Teknikstack</h2>
-    <p>Projektet är byggt med en stadig "Node-kloss" i grunden:</p>
+    <p>Projektet är byggt med en stadig "Node-kloss" i grunden</p>
     <h3>Frontend:</h3>
     <p>React med TypeScript blir ett typsäkert och responsivt gränssnitt.</p>
     <h3>Backend:</h3>
     <p>
-      Node.js och Express som serverar sidan, API och den server-side renderade
-      highscore-listan.
+      Node.js tsx och Express som serverar sidan, API och den server-side renderade
+      highscore-listan. Tsx gör att man kan köra express-servern direkt från TS-filen.
     </p>
     <h3>Databas:</h3>
     <p>MongoDB via Mongoose för att lagra resultat och ordlistor.</p>
     <h3>Rendering:</h3>
     <p>
       EJS används för att rendera de delar av applikationen som kräver snabb
-      server-side rendering och servering , som t.ex. highscore-listan.
+      server-side rendering och servering. Främst highscore-listan.
     </p>
     <h3>Tankar bakom koden</h3>
     <p>

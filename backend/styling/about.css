@@ -50,8 +50,26 @@ body .about-text {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.2rem;
 }
-body .about-text h2, body .about-text h3, body .about-text h4 {
+body .about-text .head-line {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body .about-text .head-line h1 {
+  text-align: center;
+}
+body .about-text h1,
+body .about-text h2,
+body .about-text h3,
+body .about-text h4 {
   margin: 1rem 0 0.2rem 0;
+  background-color: #00c954;
+  padding: 0.2rem;
+  color: #35393c;
+  border-bottom: solid 3px #ffe100;
+  border-right: solid 3px #ffe100;
+  border-left: solid 3px #ffe100;
+  border-radius: 15px;
 }
 body .about-text p {
   margin: 0 0 1rem;

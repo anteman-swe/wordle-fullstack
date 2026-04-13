@@ -1,5 +1,4 @@
 body {
-  // position: relative;
   background-color: #a4d8ff;
   margin: auto;
   max-width: 1200px;
@@ -8,7 +7,6 @@ body {
   border-left: solid 1px black;
   border-right: solid 1px black;
   .header {
-    // background-color: blueviolet;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,15 +48,32 @@ body {
     margin: 3rem auto 5rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.2rem;
-    h2, h3, h4 {
+    .head-line {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h1 {
+        text-align: center;
+      }
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
       margin: 1rem 0 0.2rem 0;
+      background-color: #00c954;
+      padding: 0.2rem;
+      color: #35393c;
+      border-bottom: solid 3px #ffe100;
+      border-right: solid 3px #ffe100;
+      border-left: solid 3px #ffe100;
+      border-radius: 15px;
     }
     p {
       margin: 0 0 1rem;
     }
   }
   .footer-container {
-    //   background-color: yellowgreen;
     margin-top: 1rem;
     bottom: 0;
     width: 100%;
