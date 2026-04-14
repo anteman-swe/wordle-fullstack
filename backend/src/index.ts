@@ -1,40 +1,38 @@
 import "dotenv/config";
-import express from "express";
+import express, { type Request, type Response} from "express";
 import cors from "cors";
 import ejs from 'ejs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-import type { Request, Response } from "express";
 import type { Message, testTuple } from "../../shared/types.js";
 
 import wordCheck from "../word-logic/wordCheck.js";
+import getWordList from "./getWordList.js";
 import wordSelect from "../word-logic/wordSelect.js";
 import generateRandomID from "./generateRandomID.js";
-import { readFile } from "node:fs/promises";
+
 import { connectToMongoDB } from "./dbConnection.js";
 
 import Game from "./models/Game.js";
 import Highscore from "./models/Highscore.js";
 
-let wordlist: Array<string>;
 
 const __filename: string = fileURLToPath(import.meta.url); // Gives the absolute path to this file, index.ts, from filesystem
+
 const __dirname: string = path.dirname(__filename); // This directory, where this, index.ts is located
+
+const pathToWords = path.join(__dirname, "..", "wordlist", "svenska-ord-washed.json"); // from this directory up 1 level into wordlist to find svenska-ord-washed
+
 const distPath: string = path.join(__dirname, "..", "..", "frontend", "dist"); // From this dir up 2 levels, then in to 'dist' = "../frontend/dist"
+
 const viewsPath: string = path.join(__dirname, "..", "views"); // Route for the SSR pages templates
+
 const staticPages:string = path.join(__dirname, "..", "pages"); // Route to the static pages
 const stylingDir: string = path.join(__dirname, "..", "styling"); // Route to styling
 const assetsDir: string = path.join(__dirname, "..", "assets"); // Route to assets
 
-try {
-  const pathToWords = path.join(__dirname, "..", "wordlist", "svenska-ord-washed.json"); // from this directory up 1 level into wordlist to find svenska-ord-washed
-  const fetchedList: string = await readFile(pathToWords, { encoding: "utf8" });
-  wordlist = await JSON.parse(fetchedList);
-  connectToMongoDB();
-} catch (err: any) {
-  throw new Error(err.message);
-}
+await connectToMongoDB();
 
 const app = express();
 const PORT = process.env.SERVER_PORT || 5080;
@@ -43,14 +41,7 @@ app.engine("ejs", ejs.renderFile);
 app.set("view engine", "ejs");
 app.set("views", viewsPath);
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5080"
-    ],
-  }),
-);
+app.use(cors()); //  Allow requests from any domain
 
 app.use(express.json());
 
@@ -64,6 +55,7 @@ app.use('/', express.static(distPath));
 app.use('/css', express.static(stylingDir));
 app.use('/assets', express.static(assetsDir));
 
+
 // ####### API Server for game #######
 // Adress för att testa API:
 app.get("/api/data", (req: Request, res: Response) => {
@@ -75,6 +67,9 @@ app.get("/api/data", (req: Request, res: Response) => {
   res.json(response);
 });
 
+// Get the list of swedish words
+const wordlist = await getWordList(pathToWords);
+
 // Adress to start the game
 app.get("/api/start-game", async (req: Request, res: Response) => {
   let response: Message = { text: "", gameID: "", timestamp: "" };
@@ -83,8 +78,6 @@ app.get("/api/start-game", async (req: Request, res: Response) => {
   const gameId = generateRandomID(8);
   const startTime = new Date();
   const word = wordSelect(wordlist, numberOfChars, dups);
-  // TODO: Remove console.log
-  console.log('Ordet:', word);
   const game = new Game({ gameId, startTime, word, dups });
   await game.save();
 
