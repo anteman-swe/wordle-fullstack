@@ -28,7 +28,7 @@ export default function Game(props: gameProps): ReactNode {
   const [guessMatrix, setMatrix] = useState<Array<Array<testTuple>>>(emptyArray);
   const [guessNo, setGuessNo] = useState(0);
   const [currentGameTime, setGameTime] = useState<number>(0);
-
+  const [lastGameWord, setLastWord] = useState<string>('');
   const updateRow = (row: number, guessWord: Array<testTuple>) => {
     const newMatrix = [...guessMatrix];
     guessWord.map((charResult, index) => {
@@ -52,14 +52,14 @@ export default function Game(props: gameProps): ReactNode {
     }
   }
 
-  async function endTheGame(gId: string): Promise<number> {
+  async function endTheGame(gId: string): Promise<{duration: number, theWord: string}> {
     const endGame: Response = await fetch('/api/end-game', {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({gameId: gId})
     });
     const endAnswer = await endGame.json();
-    return Number(endAnswer.duration);
+    return endAnswer;
   }
 
   async function testGuess(word: string) {
@@ -88,12 +88,14 @@ export default function Game(props: gameProps): ReactNode {
   }
 
   const handleWinning = async (): Promise<void> => {
-    const gameTime = await endTheGame(gameID);
-    setGameTime(gameTime);
+    const gameResult = await endTheGame(gameID);
+    setGameTime(gameResult.duration);
     setVictory(true);
   };
 
-  const handleLost = (): void => {
+  const handleLost = async (): Promise<void> => {
+    const gameOver = await endTheGame(gameID);
+    setLastWord(gameOver.theWord);
     if(!gameVictory) setEnd(true);
   }
 
@@ -133,7 +135,9 @@ export default function Game(props: gameProps): ReactNode {
       />
       <GameLost 
         isOpen={endOfGame}
-        onClose={closeLostGame} />
+        onClose={closeLostGame}
+        lastGameWord={lastGameWord}
+       />
     </>
   );
 }

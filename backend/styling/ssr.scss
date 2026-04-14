@@ -2,13 +2,12 @@ body {
   background-color: #a4d8ff;
   margin: auto;
   max-width: 1200px;
-  height: 100dvh;
+  min-height: 100dvh;
   border-left: solid 1px black;
   border-right: solid 1px black;
 }
 
 .header {
-  // background-color: blueviolet;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -163,9 +162,7 @@ body {
   }
 }
 .footer-container {
-  //   background-color: yellowgreen;
-  margin-top: 1rem;
-  position: relative;
+  margin-top: 2rem;
   bottom: 0;
   width: 100%;
   max-width: 1198px;
@@ -178,7 +175,6 @@ body {
   @media screen and (min-width: 640px) {
     height: 120px;
     flex-direction: row;
-    position: absolute;
   }
   img {
     width: 100px;

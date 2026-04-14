@@ -2,7 +2,7 @@ body {
   background-color: #a4d8ff;
   margin: auto;
   max-width: 1200px;
-  height: 100dvh;
+  min-height: 100dvh;
   border-left: solid 1px black;
   border-right: solid 1px black;
 }
@@ -170,8 +170,7 @@ body {
 }
 
 .footer-container {
-  margin-top: 1rem;
-  position: relative;
+  margin-top: 2rem;
   bottom: 0;
   width: 100%;
   max-width: 1198px;
@@ -186,7 +185,6 @@ body {
   .footer-container {
     height: 120px;
     flex-direction: row;
-    position: absolute;
   }
 }
 .footer-container img {
