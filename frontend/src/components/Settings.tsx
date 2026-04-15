@@ -7,7 +7,7 @@ import WordLengthSelector from "./wordLengthSelector";
 import '../styles/Menu.scss';
 import wheel from "../assets/settings-icon.png";
 
-import type { settingProps } from "../../../shared/types";
+import type { settingProps } from "../../../backend/src/shared/types";
 
 Modal.setAppElement("#root");
 

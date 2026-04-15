@@ -3,7 +3,7 @@ import '../styles/Navigation.scss';
 import Menu from './Menu';
 import Settings from './Settings';
 
-import type { settingProps } from '../../../shared/types';
+import type { settingProps } from '../../../backend/src/shared/types';
 import type { ReactNode } from 'react';
 
 export default function Navigation(

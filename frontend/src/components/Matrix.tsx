@@ -1,5 +1,5 @@
 import "../styles/Matrix.scss";
-import type { testTuple } from '../../../shared/types';
+import type { testTuple } from '../../../backend/src/shared/types';
 import type { ReactNode } from "react";
 interface matrixProps {
     guessMatrix: Array<Array<testTuple>>
