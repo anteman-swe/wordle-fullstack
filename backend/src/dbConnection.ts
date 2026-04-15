@@ -7,14 +7,14 @@ const dbUri = process.env.MONGODB_URI!;
 export async function connectToMongoDB():Promise<void> {
     try {
         await mongoose.connect(dbUri);
-        console.log('Ansluten till MongoDB med Mongoose!');
+        console.log('Connection created to MongoDB with Mongoose!', '\n');
     } catch (error: any) {
-        console.log('Kunde inte ansluta till MongoDB:', error);
+        console.log('Could not connect to MongoDB:', error, '\n');
         throw error;
     }
 }
 
 export async function closeMongoDBConnection() {
     await mongoose.disconnect();
-    console.log('MongoDB anslutningen är stängd.');
+    console.log('The connection to MongoDB is closed!', '\n');
 }

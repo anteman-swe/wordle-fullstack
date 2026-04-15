@@ -36,7 +36,7 @@ export default function gameRouter() {
   // Address to test API:
   router.get("/data", (req: Request, res: Response) => {
     const response: Message = {
-      text: "Meddelande från TS-servern",
+      text: "Message from the TS-server",
       gameID: "0",
       timestamp: new Date().toISOString(),
     };
