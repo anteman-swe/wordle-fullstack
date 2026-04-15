@@ -15,7 +15,7 @@ import Game from "./models/Game.js";
 import Highscore from "./models/Highscore.js";
 
 const __filename: string = fileURLToPath(import.meta.url); // Gives the absolute path to this file from filesystem
-const __dirname: string = path.dirname(__filename); // This directory, where this, index.ts is located
+const __dirname: string = path.dirname(__filename); // This directory, where this file is located
 const pathToWords = path.join(
   __dirname,
   "..",
