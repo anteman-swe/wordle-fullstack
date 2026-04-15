@@ -2,9 +2,9 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
+    "rootDir": "./src",
     // "rootDirs": ["./src", "./word-logic"],
-    "outDir": "./dist",
+    "outDir": "./server",
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["../shared/*"],

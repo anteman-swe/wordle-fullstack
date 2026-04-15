@@ -4,11 +4,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import generateRandomID from "./generateRandomID.js";
 import { connectToMongoDB } from "./dbConnection.js";
-import type { Message, testTuple } from "../../shared/types.js";
+import type { Message, testTuple } from "./shared/types.js";
 
-import wordCheck from "../word-logic/wordCheck.js";
+import wordCheck from "./word-logic/wordCheck.js";
 import getWordList from "./getWordList.js";
-import wordSelect from "../word-logic/wordSelect.js";
+import wordSelect from "./word-logic/wordSelect.js";
 
 // Import DB Models
 import Game from "./models/Game.js";
@@ -18,7 +18,6 @@ const __filename: string = fileURLToPath(import.meta.url); // Gives the absolute
 const __dirname: string = path.dirname(__filename); // This directory, where this file is located
 const pathToWords = path.join(
   __dirname,
-  "..",
   "wordlist",
   "svenska-ord-washed.json",
 ); // from this directory up 1 level into wordlist to find svenska-ord-washed
