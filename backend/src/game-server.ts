@@ -1,32 +1,17 @@
 import express, { type Request, type Response } from "express";
 import cors from "cors";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+
 import generateRandomID from "./generateRandomID.js";
-import { connectToMongoDB } from "./dbConnection.js";
 import type { Message, testTuple } from "./shared/types.js";
 
 import wordCheck from "./word-logic/wordCheck.js";
-import getWordList from "./getWordList.js";
 import wordSelect from "./word-logic/wordSelect.js";
 
 // Import DB Models
 import Game from "./models/Game.js";
 import Highscore from "./models/Highscore.js";
 
-const __filename: string = fileURLToPath(import.meta.url); // Gives the absolute path to this file from filesystem
-const __dirname: string = path.dirname(__filename); // This directory, where this file is located
-const pathToWords = path.join(
-  __dirname,
-  "wordlist",
-  "svenska-ord-washed.json",
-); // from this directory up 1 level into wordlist to find svenska-ord-washed
-
-await connectToMongoDB(); // Connecting to DB
-
-const wordlist: string[] = await getWordList(pathToWords); // Get the list of swedish words
-
-export default function gameRouter() {
+export default function gameRouter(wordlist: string[]) {
   const router = express.Router();
 
   router.use(cors()); //  Allow requests from any domain
@@ -47,9 +32,7 @@ export default function gameRouter() {
     let response: Message = { text: "", gameID: "", timestamp: "" };
     const numberOfChars: number = Number(req.query.wl ?? 0);
     const dups: boolean = req.query.dup === "true" ? true : false;
-    
     const gameId = generateRandomID(8); // Generate an random ID, 8 characters long
-    
     const startTime = new Date();
     let word = null;
     if (numberOfChars === 0) {
@@ -79,12 +62,10 @@ export default function gameRouter() {
   // Adress to finish game
   router.post("/end-game", async (req: Request, res: Response) => {
     const { gameId } = req.body;
-
     const game = await Game.findOne({ gameId });
     if (!game) {
       return res.status(404).json({ error: "Game not found" });
     }
-
     const endTime = new Date();
     const duration = endTime.getTime() - game.startTime.getTime();
     const theWord = game.word;

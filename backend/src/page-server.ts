@@ -2,26 +2,20 @@ import "dotenv/config";
 import express, { type Request, type Response } from "express";
 import cors from "cors";
 import { fileURLToPath } from "node:url";
-import path from "node:path";
-
+import { dirname, resolve, join } from "node:path";
 import Highscore from "./models/Highscore.js";
 
 const __filename: string = fileURLToPath(import.meta.url); // Gives the absolute path to this file from filesystem
-
-const __dirname: string = path.dirname(__filename); // This directory, where this file is located
-
-const distPath: string = path.join(__dirname, "..", "..", "frontend", "dist"); // From this dir up 2 levels, then in to 'dist' = "../frontend/dist"
-
-const viewsPath: string = path.join(__dirname, "..", "views"); // Route for the SSR pages templates
-
-const staticPages: string = path.join(__dirname, "..", "pages"); // Route to the static pages
-const stylingDir: string = path.join(__dirname, "..", "styling"); // Route to styling
-const assetsDir: string = path.join(__dirname, "..", "assets"); // Route to assets
+const __dirname: string = dirname(__filename); // This directory, where this file is located
+const distPath: string = resolve(__dirname, "..", "..", "frontend", "dist"); // From this dir up 2 levels, then in to 'dist' = "../frontend/dist"
+const staticPages: string = resolve(__dirname, "..", "pages"); // Route to the static pages
+const stylingDir: string = resolve(__dirname, "..", "styling"); // Route to styling
+const assetsDir: string = resolve(__dirname, "..", "assets"); // Route to assets
 
 export default function pageServer() {
   const router = express.Router();
 
-  router.use(cors()); //  Allow requests from any domain
+  router.use(cors()); // Allow requests from any domain
 
   router.use(express.json());
 
@@ -65,5 +59,8 @@ export default function pageServer() {
     },
   );
 
+  router.get("/:path", (req: Request, res: Response) => {
+    res.sendFile(join(distPath, "index.html"));
+  });
   return router;
 }

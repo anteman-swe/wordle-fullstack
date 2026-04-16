@@ -12,7 +12,12 @@ export default function Rules(): ReactNode {
           </li>
           <li>
             Man kan också välja om ordet bara ska ha unika bokstäver eller om
-            man tillåter dubletter.
+            man tillåter dubletter. 
+          </li>
+          <li>
+            Dubletter innebär att samma bokstav kan förekomma flera gånger.
+            T ex så har "testa" dublett av "T", även "passa" har dublett av "S"
+            men det finns inga dubletter i ord som "tesla" eller "gurka". 
           </li>
           <li>
             Ordlängden bestämmer också det antal försök som man har, t ex om man
