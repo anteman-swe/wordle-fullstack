@@ -64,10 +64,6 @@ export default function pageServer() {
       });
     },
   );
-  // All other routes should go to startpage
-  router.get("/:path", (req: Request, res: Response) => {
-    res.redirect("/");
-  });
 
   return router;
 }

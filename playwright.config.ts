@@ -77,7 +77,8 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
   webServer: {
-    command: 'npm run backend',
-    port: 5080,
+    command: 'npm run tsstart',
+    // port: 5080,
+    // url: 'http://localhost:5080',
   }
 });

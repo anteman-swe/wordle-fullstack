@@ -47,10 +47,6 @@ export default function pageServer() {
             currentDups: duplicates,
         });
     });
-    // All other routes should go to startpage
-    router.get("/:path", (req, res) => {
-        res.redirect("/");
-    });
     return router;
 }
 //# sourceMappingURL=page-server.js.map
