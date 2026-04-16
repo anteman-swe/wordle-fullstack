@@ -2,18 +2,17 @@ import "dotenv/config";
 import express, {} from "express";
 import cors from "cors";
 import { fileURLToPath } from "node:url";
-import path from "node:path";
+import { dirname, resolve, join } from "node:path";
 import Highscore from "./models/Highscore.js";
 const __filename = fileURLToPath(import.meta.url); // Gives the absolute path to this file from filesystem
-const __dirname = path.dirname(__filename); // This directory, where this file is located
-const distPath = path.join(__dirname, "..", "..", "frontend", "dist"); // From this dir up 2 levels, then in to 'dist' = "../frontend/dist"
-const viewsPath = path.join(__dirname, "..", "views"); // Route for the SSR pages templates
-const staticPages = path.join(__dirname, "..", "pages"); // Route to the static pages
-const stylingDir = path.join(__dirname, "..", "styling"); // Route to styling
-const assetsDir = path.join(__dirname, "..", "assets"); // Route to assets
+const __dirname = dirname(__filename); // This directory, where this file is located
+const distPath = resolve(__dirname, "..", "..", "frontend", "dist"); // From this dir up 2 levels, then in to 'dist' = "../frontend/dist"
+const staticPages = resolve(__dirname, "..", "pages"); // Route to the static pages
+const stylingDir = resolve(__dirname, "..", "styling"); // Route to styling
+const assetsDir = resolve(__dirname, "..", "assets"); // Route to assets
 export default function pageServer() {
     const router = express.Router();
-    router.use(cors()); //  Allow requests from any domain
+    router.use(cors()); // Allow requests from any domain
     router.use(express.json());
     // Static route for about page
     router.use("/about", express.static(staticPages + "/about.html"));
@@ -46,6 +45,9 @@ export default function pageServer() {
             currentLength: length,
             currentDups: duplicates,
         });
+    });
+    router.get("/:path", (req, res) => {
+        res.sendFile(join(distPath, "index.html"));
     });
     return router;
 }

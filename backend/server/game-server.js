@@ -1,21 +1,12 @@
 import express, {} from "express";
 import cors from "cors";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import generateRandomID from "./generateRandomID.js";
-import { connectToMongoDB } from "./dbConnection.js";
 import wordCheck from "./word-logic/wordCheck.js";
-import getWordList from "./getWordList.js";
 import wordSelect from "./word-logic/wordSelect.js";
 // Import DB Models
 import Game from "./models/Game.js";
 import Highscore from "./models/Highscore.js";
-const __filename = fileURLToPath(import.meta.url); // Gives the absolute path to this file from filesystem
-const __dirname = path.dirname(__filename); // This directory, where this file is located
-const pathToWords = path.join(__dirname, "wordlist", "svenska-ord-washed.json"); // from this directory up 1 level into wordlist to find svenska-ord-washed
-await connectToMongoDB(); // Connecting to DB
-const wordlist = await getWordList(pathToWords); // Get the list of swedish words
-export default function gameRouter() {
+export default function gameRouter(wordlist) {
     const router = express.Router();
     router.use(cors()); //  Allow requests from any domain
     router.use(express.json());

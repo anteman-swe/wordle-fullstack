@@ -1,2 +1,2 @@
 import "dotenv/config";
-export default function cServer(): import("express-serve-static-core").Express;
+export default function cServer(wordlist: string[]): import("express-serve-static-core").Express;

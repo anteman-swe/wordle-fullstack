@@ -1,1 +1,1 @@
-export default function gameRouter(): import("express-serve-static-core").Router;
+export default function gameRouter(wordlist: string[]): import("express-serve-static-core").Router;

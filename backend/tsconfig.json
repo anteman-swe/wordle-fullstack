@@ -52,5 +52,5 @@
     // "emitDeclarationOnly": true,
     // "allowImportingTsExtensions": true,
   },
-  "include": ["src/**/*", "word-logic"]
+  "include": ["src/**/*", "word-logic", "wordlist"],
 }

@@ -4,11 +4,13 @@ import GuessInput from "./GuessInput.tsx";
 import Matrix from "./Matrix.tsx";
 import GameWon from "./GameWon.tsx";
 import GameLost from "./GameLost.tsx";
+import FaultyGameStart from "./FaultyGameStart.tsx";
 
 import { useMemo, useState, type ReactNode } from "react";
 
 import type { testTuple } from "../../../shared/types.ts";
 import GameExplanation from "./GameExplanation.tsx";
+import { useNavigate } from "react-router";
 interface gameProps {
   numberOfGuesses: number;
   numberOfChars: number;
@@ -18,6 +20,7 @@ interface gameProps {
 export default function Game(props: gameProps): ReactNode {
   const [endOfGame, setEnd] = useState<boolean>(false);
   const [gameVictory, setVictory] = useState<boolean>(false);
+  const [gameFaulty, setFaulty] = useState<boolean>(false);
   const [gameID, setGameID] = useState<string>("");
 
   const emptyArray = Array(props.numberOfGuesses)
@@ -37,18 +40,22 @@ export default function Game(props: gameProps): ReactNode {
     setMatrix(newMatrix);
   };
 
+  const navigate = useNavigate();
+
   async function startTheGame(chars: number, dupsAllowed: boolean) {
     const tryTostartGame: Response = await fetch(
       "/api/start-game?wl=" + chars + "&dup=" + dupsAllowed,
     );
     const gameStarted = await tryTostartGame.json();
     if (tryTostartGame.status !== 204) {
-      if (gameStarted.text) {
+      if (gameStarted.gameID !== "0") {
         setGameID(gameStarted.gameID);
         return;
+      } else {
+        setFaulty(true);
       }
     } else {
-      console.log(gameStarted.text);
+      setFaulty(true);
     }
   }
 
@@ -113,6 +120,14 @@ export default function Game(props: gameProps): ReactNode {
     startTheGame(props.numberOfChars, props.allowDups);
   }
   
+  const closeFaulty = (): void => {
+    setFaulty(false);
+    setGuessNo(0);
+    setMatrix(emptyArray);
+    navigate('/');
+    
+  }
+
   const postHighscore = (name: string): void => {
     postName(name, gameID, guessNo, props.numberOfChars, props.allowDups);
     closeCelebration();
@@ -137,7 +152,11 @@ export default function Game(props: gameProps): ReactNode {
         isOpen={endOfGame}
         onClose={closeLostGame}
         lastGameWord={lastGameWord}
-       />
+      />
+      <FaultyGameStart
+        isOpen={gameFaulty}
+        onClose={closeFaulty}
+      />
     </>
   );
 }
