@@ -55,7 +55,7 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         launchOptions: {
           args: ['--disable-blink-features=LayoutAnimations'],
-          slowMo: 100,
+          // slowMo: 100,
         },
        },
     },
@@ -65,7 +65,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Firefox"],
         launchOptions: {
-          slowMo: 200,
+          // slowMo: 200,
         },
        },
     },
@@ -75,7 +75,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Safari"],
         launchOptions: {
-          slowMo: 200,
+          // slowMo: 200,
         },
       },
     },
