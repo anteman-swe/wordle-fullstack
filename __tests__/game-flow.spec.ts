@@ -32,7 +32,7 @@ test.describe('First testing simple API steps', async () => {
         gameId = body.gameID;
     });
     
-    test('Check response when testing a word against secret word', async ({ request }) => {
+    test('Response when testing a word against secret word', async ({ request }) => {
         const response = await request.post(localhost + '/testword', {
             data: {
                 gameId: gameId,
@@ -47,7 +47,19 @@ test.describe('First testing simple API steps', async () => {
         expect(result.length).toBe(5);
     });
 
-    // test('')
+    test('Response when game is ended', async ({ request }) => {
+        const response = await request.post(localhost + '/end-game', {
+            data: {
+                gameId: gameId
+            }
+        });
+        expect(response.status()).toBe(200);
+        const result = await response.json();
+        console.log(result);
+        expect(typeof(result.duration)).toBe('number');
+        expect(result.theWord.length).toBe(5);
+        expect(result.theWord).toBe('bästa');
+    });
 });
 
 // test.describe('Testing happy flow', async () => {
