@@ -59,6 +59,17 @@ test.describe('First testing simple API steps', async () => {
         expect(result.theWord.length).toBe(5);
         expect(result.theWord).toBe('bästa');
     });
+
+    test('Trying to end game with faulty gameID', async ({ request }) => {
+        const response = await request.post(localhost + '/end-game', {
+            data: {
+                gameId: "0"
+            }
+        });
+        expect(response.status()).toBe(404);
+        const result = await response.json();
+        expect(result.error).toContain('not');
+    });
 });
 
 // test.describe('Testing happy flow', async () => {

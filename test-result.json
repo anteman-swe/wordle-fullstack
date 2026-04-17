@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 2
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "projects": [
@@ -20,7 +20,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "chromium",
         "name": "chromium",
@@ -36,7 +36,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "firefox",
         "name": "firefox",
@@ -52,7 +52,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "webkit",
         "name": "webkit",
@@ -118,10 +118,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 113,
+                      "duration": 101,
                       "errors": [],
                       "stdout": [
                         {
@@ -142,9 +142,15 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T09:07:44.930Z",
+                      "startTime": "2026-04-17T09:32:57.195Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-30d46-eps-Should-start-a-new-game-chromium/trace.zip"
+                        }
+                      ]
                     }
                   ],
                   "status": "expected"
@@ -168,17 +174,23 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 97,
+                      "duration": 47,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T09:07:45.147Z",
+                      "startTime": "2026-04-17T09:32:57.372Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-b254f--a-word-against-secret-word-chromium/trace.zip"
+                        }
+                      ]
                     }
                   ],
                   "status": "expected"
@@ -202,17 +214,23 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 68,
+                      "duration": 33,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T09:07:45.279Z",
+                      "startTime": "2026-04-17T09:32:57.445Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-0f575-Response-when-game-is-ended-chromium/trace.zip"
+                        }
+                      ]
                     }
                   ],
                   "status": "expected"
@@ -224,7 +242,7 @@
               "column": 5
             },
             {
-              "title": "Should start a new game",
+              "title": "Trying to end game with faulty gameID",
               "ok": true,
               "tags": [],
               "tests": [
@@ -232,231 +250,35 @@
                   "timeout": 30000,
                   "annotations": [],
                   "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
                   "results": [
                     {
                       "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 116,
+                      "duration": 59,
                       "errors": [],
-                      "stdout": [
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T09:32:57.500Z",
+                      "annotations": [],
+                      "attachments": [
                         {
-                          "text": "The following is server running with testWordlist:\n\n"
-                        },
-                        {
-                          "text": "Connection created to MongoDB with Mongoose! \n\n"
-                        },
-                        {
-                          "text": "The Combined Server running on http://localhost:5080 \n\n"
-                        },
-                        {
-                          "text": "Connection created to MongoDB with Mongoose! \n\n"
-                        },
-                        {
-                          "text": "The Combined Server running on http://localhost:5080 \n\n"
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-1a3e6-end-game-with-faulty-gameID-chromium/trace.zip"
                         }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:07:44.992Z",
-                      "annotations": [],
-                      "attachments": []
+                      ]
                     }
                   ],
                   "status": "expected"
                 }
               ],
-              "id": "0fbb7ab0159cb77a184f-fecf820ed6f07ca23067",
+              "id": "0fbb7ab0159cb77a184f-31d61200a58b6e2dfc03",
               "file": "game-flow.spec.ts",
-              "line": 18,
-              "column": 5
-            },
-            {
-              "title": "Response when testing a word against secret word",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 44,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:07:45.215Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0fbb7ab0159cb77a184f-eeb7d2f84c4d96149558",
-              "file": "game-flow.spec.ts",
-              "line": 35,
-              "column": 5
-            },
-            {
-              "title": "Response when game is ended",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 56,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:07:45.296Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0fbb7ab0159cb77a184f-8dfde12e62417afd210e",
-              "file": "game-flow.spec.ts",
-              "line": 50,
-              "column": 5
-            },
-            {
-              "title": "Should start a new game",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 64,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "The following is server running with testWordlist:\n\n"
-                        },
-                        {
-                          "text": "Connection created to MongoDB with Mongoose! \n\n"
-                        },
-                        {
-                          "text": "The Combined Server running on http://localhost:5080 \n\n"
-                        },
-                        {
-                          "text": "Connection created to MongoDB with Mongoose! \n\n"
-                        },
-                        {
-                          "text": "The Combined Server running on http://localhost:5080 \n\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:07:46.395Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0fbb7ab0159cb77a184f-dcc9d40f9394e8c9b999",
-              "file": "game-flow.spec.ts",
-              "line": 18,
-              "column": 5
-            },
-            {
-              "title": "Response when testing a word against secret word",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 35,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:07:46.530Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0fbb7ab0159cb77a184f-041ef7c1a5c01f6098be",
-              "file": "game-flow.spec.ts",
-              "line": 35,
-              "column": 5
-            },
-            {
-              "title": "Response when game is ended",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 31,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:07:46.585Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0fbb7ab0159cb77a184f-aa4d08bfc4b87a6772f8",
-              "file": "game-flow.spec.ts",
-              "line": 50,
+              "line": 63,
               "column": 5
             }
           ]
@@ -466,9 +288,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-17T09:07:43.204Z",
-    "duration": 3457.972,
-    "expected": 9,
+    "startTime": "2026-04-17T09:32:54.635Z",
+    "duration": 2978.5380000000005,
+    "expected": 4,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
