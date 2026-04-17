@@ -3,7 +3,7 @@
     "configFile": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/playwright.config.ts",
     "rootDir": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/__tests__",
     "forbidOnly": false,
-    "fullyParallel": true,
+    "fullyParallel": false,
     "globalSetup": null,
     "globalTeardown": null,
     "globalTimeout": 0,
@@ -88,27 +88,31 @@
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.59.1",
-    "workers": 2,
+    "workers": 1,
     "webServer": {
-      "command": "npx tsx backend/src/test-server-start.ts"
+      "command": "npx tsx backend/server/test-server-start.js",
+      "url": "http://localhost:5080/api/data",
+      "reuseExistingServer": true,
+      "timeout": 120000,
+      "stdout": "pipe"
     }
   },
   "suites": [
     {
-      "title": "game-flow.spec.ts",
-      "file": "game-flow.spec.ts",
+      "title": "game-api.spec.ts",
+      "file": "game-api.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Testing happy flow",
-          "file": "game-flow.spec.ts",
-          "line": 77,
+          "title": "First testing simple API steps",
+          "file": "game-api.spec.ts",
+          "line": 8,
           "column": 6,
           "specs": [
             {
-              "title": "Test winning with word with duplicates",
+              "title": "Should start a new game",
               "ok": true,
               "tags": [],
               "tests": [
@@ -120,31 +124,637 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4253,
+                      "duration": 63,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T16:03:39.568Z",
+                      "startTime": "2026-04-17T19:43:23.841Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-Testing-happy-fl-fbbe4-g-with-word-with-duplicates-chromium/trace.zip"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
                   "status": "expected"
                 }
               ],
-              "id": "0fbb7ab0159cb77a184f-3ecc752f5caf53d96b97",
-              "file": "game-flow.spec.ts",
-              "line": 137,
+              "id": "d0d5d747f4a99eff5f23-6c671e64cf24b4755d9b",
+              "file": "game-api.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "Response when testing a word against secret word",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 34,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:23.937Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-9e98c3e58ebcc11e07d2",
+              "file": "game-api.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "Response when game is ended",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 26,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:23.985Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-85391ff1df5715c1cfae",
+              "file": "game-api.spec.ts",
+              "line": 46,
+              "column": 3
+            },
+            {
+              "title": "Trying to end game with faulty gameID",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 23,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:24.029Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-8fa36a658b918af2876a",
+              "file": "game-api.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "Should start a new game",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 54,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:30.127Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-05ffa8d3719df4e2c78b",
+              "file": "game-api.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "Response when testing a word against secret word",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:30.209Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-3673cff0c49979fa6f95",
+              "file": "game-api.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "Response when game is ended",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 23,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:30.241Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-fce694f8d4f5ef242409",
+              "file": "game-api.spec.ts",
+              "line": 46,
+              "column": 3
+            },
+            {
+              "title": "Trying to end game with faulty gameID",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 16,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:30.278Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-c4fdec0905056df77a66",
+              "file": "game-api.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "Should start a new game",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 42,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:40.657Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-d1ada1718dbf694a63fd",
+              "file": "game-api.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "Response when testing a word against secret word",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:40.730Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-eb9e6dd7f6dd5683580d",
+              "file": "game-api.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "Response when game is ended",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 23,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:40.759Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-28ba0d19de1561549559",
+              "file": "game-api.spec.ts",
+              "line": 46,
+              "column": 3
+            },
+            {
+              "title": "Trying to end game with faulty gameID",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:40.796Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d0d5d747f4a99eff5f23-d26442237c6c020c301e",
+              "file": "game-api.spec.ts",
+              "line": 59,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "happy-flow-no-dups.spec.ts",
+      "file": "happy-flow-no-dups.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Testing happy flow",
+          "file": "happy-flow-no-dups.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Test winning without duplicate characters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2380,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:24.083Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0c19c3aad882812aa296-849405e57264bb327721",
+              "file": "happy-flow-no-dups.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "Test winning without duplicate characters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4108,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:30.327Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0c19c3aad882812aa296-2c0db76f5a8f0b3448cc",
+              "file": "happy-flow-no-dups.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "Test winning without duplicate characters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3255,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:40.850Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0c19c3aad882812aa296-2a2960d76ed9e40d425c",
+              "file": "happy-flow-no-dups.spec.ts",
+              "line": 14,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "happy-flow-with-dups.spec.ts",
+      "file": "happy-flow-with-dups.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Testing happy flow",
+          "file": "happy-flow-with-dups.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Test winning with duplicate characters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2679,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:26.603Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a1ebb3dbbe6a5bb6409a-ce99cb9057c9be033f22",
+              "file": "happy-flow-with-dups.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "Test winning with duplicate characters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4044,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:35.122Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a1ebb3dbbe6a5bb6409a-159ac5cde16aeb801383",
+              "file": "happy-flow-with-dups.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "Test winning with duplicate characters",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4092,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T19:43:44.261Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a1ebb3dbbe6a5bb6409a-811fdd5b4e3157ee99b6",
+              "file": "happy-flow-with-dups.spec.ts",
+              "line": 14,
               "column": 3
             }
           ]
@@ -154,9 +764,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-17T16:03:37.954Z",
-    "duration": 6962.853000000003,
-    "expected": 1,
+    "startTime": "2026-04-17T19:43:21.515Z",
+    "duration": 26956.423,
+    "expected": 18,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

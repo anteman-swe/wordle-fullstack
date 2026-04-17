@@ -24,7 +24,7 @@ export default function gameRouter(wordlist: string[]) {
       gameID: "0",
       timestamp: new Date().toISOString(),
     };
-    res.json(response);
+    res.status(200).json(response);
   });
 
   // Adress to start the game
