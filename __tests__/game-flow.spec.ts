@@ -55,7 +55,6 @@ test.describe('First testing simple API steps', async () => {
         });
         expect(response.status()).toBe(200);
         const result = await response.json();
-        console.log(result);
         expect(typeof(result.duration)).toBe('number');
         expect(result.theWord.length).toBe(5);
         expect(result.theWord).toBe('bästa');
