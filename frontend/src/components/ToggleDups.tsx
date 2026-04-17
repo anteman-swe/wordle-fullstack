@@ -32,6 +32,7 @@ const ToggleDups: FC<ToggleDupsProps> = (
           cursor: "pointer",
           transition: "background-color 0.3s",
         }}
+        data-testid='toggle-dups'
       >
         <div
           style={{

@@ -89,7 +89,9 @@
     "updateSourceMethod": "patch",
     "version": "1.59.1",
     "workers": 2,
-    "webServer": null
+    "webServer": {
+      "command": "npx tsx backend/src/test-server-start.ts"
+    }
   },
   "suites": [
     {
@@ -100,13 +102,13 @@
       "specs": [],
       "suites": [
         {
-          "title": "First testing simple API steps",
+          "title": "Testing happy flow",
           "file": "game-flow.spec.ts",
-          "line": 14,
+          "line": 77,
           "column": 6,
           "specs": [
             {
-              "title": "Should start a new game",
+              "title": "Test winning with word with duplicates",
               "ok": true,
               "tags": [],
               "tests": [
@@ -118,77 +120,21 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 13,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 101,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "The following is server running with testWordlist:\n\n"
-                        },
-                        {
-                          "text": "Connection created to MongoDB with Mongoose! \n\n"
-                        },
-                        {
-                          "text": "The Combined Server running on http://localhost:5080 \n\n"
-                        },
-                        {
-                          "text": "Connection created to MongoDB with Mongoose! \n\n"
-                        },
-                        {
-                          "text": "The Combined Server running on http://localhost:5080 \n\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:32:57.195Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-30d46-eps-Should-start-a-new-game-chromium/trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0fbb7ab0159cb77a184f-e2dae4bd19269518a07c",
-              "file": "game-flow.spec.ts",
-              "line": 18,
-              "column": 5
-            },
-            {
-              "title": "Response when testing a word against secret word",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 47,
+                      "duration": 4253,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-17T09:32:57.372Z",
+                      "startTime": "2026-04-17T16:03:39.568Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-b254f--a-word-against-secret-word-chromium/trace.zip"
+                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-Testing-happy-fl-fbbe4-g-with-word-with-duplicates-chromium/trace.zip"
                         }
                       ]
                     }
@@ -196,90 +142,10 @@
                   "status": "expected"
                 }
               ],
-              "id": "0fbb7ab0159cb77a184f-db2a8874494077bd7c2c",
+              "id": "0fbb7ab0159cb77a184f-3ecc752f5caf53d96b97",
               "file": "game-flow.spec.ts",
-              "line": 35,
-              "column": 5
-            },
-            {
-              "title": "Response when game is ended",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 33,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:32:57.445Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-0f575-Response-when-game-is-ended-chromium/trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0fbb7ab0159cb77a184f-b0a84c808daafac3ce06",
-              "file": "game-flow.spec.ts",
-              "line": 50,
-              "column": 5
-            },
-            {
-              "title": "Trying to end game with faulty gameID",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 59,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-04-17T09:32:57.500Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-1a3e6-end-game-with-faulty-gameID-chromium/trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "0fbb7ab0159cb77a184f-31d61200a58b6e2dfc03",
-              "file": "game-flow.spec.ts",
-              "line": 63,
-              "column": 5
+              "line": 137,
+              "column": 3
             }
           ]
         }
@@ -288,9 +154,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-17T09:32:54.635Z",
-    "duration": 2978.5380000000005,
-    "expected": 4,
+    "startTime": "2026-04-17T16:03:37.954Z",
+    "duration": 6962.853000000003,
+    "expected": 1,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
