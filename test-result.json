@@ -1,0 +1,218 @@
+{
+  "config": {
+    "configFile": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/playwright.config.ts",
+    "rootDir": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/__tests__",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/__tests__",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/__tests__",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/__tests__",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        {
+          "printSteps": true
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-result.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "game-flow.spec.ts",
+      "file": "game-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "First testing simple API steps",
+          "file": "game-flow.spec.ts",
+          "line": 14,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Should start a new game",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 136,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "The following is server running with testWordlist:\n\n"
+                        },
+                        {
+                          "text": "Connection created to MongoDB with Mongoose! \n\n"
+                        },
+                        {
+                          "text": "The Combined Server running on http://localhost:5080 \n\n"
+                        },
+                        {
+                          "text": "Connection created to MongoDB with Mongoose! \n\n"
+                        },
+                        {
+                          "text": "The Combined Server running on http://localhost:5080 \n\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T07:51:51.944Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-30d46-eps-Should-start-a-new-game-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0fbb7ab0159cb77a184f-e2dae4bd19269518a07c",
+              "file": "game-flow.spec.ts",
+              "line": 18,
+              "column": 5
+            },
+            {
+              "title": "Check response when testing a word against secret word",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 106,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-17T07:51:52.202Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/mnt/a1c82a2f-9c74-4e27-aaba-c65e7e429e36/coding/wordle-fullstack/test-results/game-flow-First-testing-si-7835d--a-word-against-secret-word-chromium/trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0fbb7ab0159cb77a184f-e3472a3d7681cd0c8560",
+              "file": "game-flow.spec.ts",
+              "line": 35,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-17T07:51:49.606Z",
+    "duration": 2765.1510000000017,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
