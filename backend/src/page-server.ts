@@ -58,7 +58,7 @@ export default function pageServer() {
       });
     },
   );
-
+  // Catch any of the rest
   router.get("/:path", (req: Request, res: Response) => {
     res.sendFile(join(distPath, "index.html"));
   });

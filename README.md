@@ -1,5 +1,5 @@
 # My Swedish Wordle Game
-I have developed a Wordle game in Swedish with a React and TypeScript frontend. The backend is built with Node.js and Express, also written in TypeScript. By utilizing the TSX module, the server is transpiled and executed on the fly, eliminating the need for a separate manual transpilation step with `tsc`.
+I have developed a Wordle game in Swedish with a React and TypeScript frontend. The backend is built with Node.js and Express, also written in TypeScript. By utilizing the TSX module, the server is transpiled and executed on the fly, eliminating the need for a separate manual transpilation step with `tsc` during development.
 
 This project is part of the "JavaScript - Fullstack" course within the "System Developer - JavaScript - Java" program at Lernia YH in Piteå.
 

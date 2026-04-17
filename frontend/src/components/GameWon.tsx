@@ -102,7 +102,7 @@ const GameWon: FC<FyrverkeriModalProps> = (
           zIndex: 1001,
         }}
       >
-        <h2 style={{color: 'darkgray'}}>Grattis! du hittade ordet! 🎉</h2>
+        <h2 style={{color: 'darkgray'}} data-testid='celebration'>Grattis! du hittade ordet! 🎉</h2>
         <p style={{fontSize: '0.8rem'}}>Din tid: {Math.ceil((durationVar+500)/1000)} s</p>
         <HighscoreInput postHighscore={postHighscore} />
         <button

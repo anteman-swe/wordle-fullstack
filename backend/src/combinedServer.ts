@@ -13,7 +13,6 @@ const __dirname: string = path.dirname(__filename); // This directory, where thi
 const viewsPath: string = path.join(__dirname, "..", "views"); // Route for the SSR pages templates
 
 export default function cServer(wordlist: string[]) {
-    console.log('cServer');
     const server = express();
 
     server.engine("ejs", ejs.renderFile);

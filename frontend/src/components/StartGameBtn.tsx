@@ -8,10 +8,10 @@ export default function StartGameBtn(): ReactNode {
   
     return (
         <>
-        <div className='gamestarter' onClick={() => {navigate('/game')}}>
+        <button className='gamestarter' name='START' onClick={() => {navigate('/game')}}>
             <img src={smiley} />
-            <p>START</p>
-        </div>
+            START
+        </button>
         </>
     )
 }

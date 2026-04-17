@@ -46,6 +46,7 @@ export default function pageServer() {
             currentDups: duplicates,
         });
     });
+    // Catch any of the rest
     router.get("/:path", (req, res) => {
         res.sendFile(join(distPath, "index.html"));
     });

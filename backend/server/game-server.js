@@ -17,7 +17,7 @@ export default function gameRouter(wordlist) {
             gameID: "0",
             timestamp: new Date().toISOString(),
         };
-        res.json(response);
+        res.status(200).json(response);
     });
     // Adress to start the game
     router.get("/start-game", async (req, res) => {
@@ -65,7 +65,7 @@ export default function gameRouter(wordlist) {
         game.endTime = endTime;
         game.duration = duration;
         await game.save();
-        res.json({ duration, theWord });
+        res.status(200).json({ duration, theWord });
     });
     // Adress to post Gamer Name to the highscore list
     router.post("/highscores", async (req, res) => {
