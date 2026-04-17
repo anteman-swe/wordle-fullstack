@@ -49,23 +49,23 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: "chromium",
-      use: {
-        ...devices["Desktop Chrome"],
-        launchOptions: {
-          args: ['--disable-blink-features=LayoutAnimations'],
-          // slowMo: 100,
-        },
-       },
-    },
+    // {
+    //   name: "chromium",
+    //   use: {
+    //     ...devices["Desktop Chrome"],
+    //     launchOptions: {
+    //       args: ['--disable-blink-features=LayoutAnimations'],
+    //       slowMo: 100,
+    //     },
+    //    },
+    // },
 
     {
       name: "firefox",
       use: {
         ...devices["Desktop Firefox"],
         launchOptions: {
-          // slowMo: 200,
+          slowMo: 200,
         },
        },
     },
@@ -75,7 +75,7 @@ export default defineConfig({
       use: {
         ...devices["Desktop Safari"],
         launchOptions: {
-          // slowMo: 200,
+          slowMo: 200,
         },
       },
     },

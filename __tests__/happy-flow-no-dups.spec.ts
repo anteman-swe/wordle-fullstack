@@ -13,6 +13,8 @@ test.describe("Testing happy flow", async () => {
 
   test("Test winning without duplicate characters", async ({ page }) => {
     // Open page and check that title is showing
+    await page.goto('about:blank');
+    await page.goto(WORDLE_URL, {waitUntil: 'networkidle'});
     await expect(page).toHaveTitle(/Wordle/);
 
     //Start a new game
