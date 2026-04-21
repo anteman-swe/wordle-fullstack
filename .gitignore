@@ -146,4 +146,5 @@ vite.config.ts.timestamp-*
 /playwright/.auth/
 
 # My files
-/test-templates/
+test-templates/
+test-result*.*
