@@ -32,6 +32,7 @@ export default function Game(props: gameProps): ReactNode {
   const [guessNo, setGuessNo] = useState(0);
   const [currentGameTime, setGameTime] = useState<number>(0);
   const [lastGameWord, setLastWord] = useState<string>('');
+  
   const updateRow = (row: number, guessWord: Array<testTuple>) => {
     const newMatrix = [...guessMatrix];
     guessWord.map((charResult, index) => {

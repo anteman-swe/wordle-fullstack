@@ -7,7 +7,7 @@ import Highscore from "./models/Highscore.js";
 
 const __filename: string = fileURLToPath(import.meta.url); // Gives the absolute path to this file from filesystem
 const __dirname: string = dirname(__filename); // This directory, where this file is located
-const distPath: string = resolve(__dirname, "..", "..", "frontend", "dist"); // From this dir up 2 levels, then in to 'dist' = "../frontend/dist"
+const gamePath: string = resolve(__dirname, "..", "game"); // From this dir up 1 levels, then in to 'game' = "/backend/game"
 const staticPages: string = resolve(__dirname, "..", "pages"); // Route to the static pages
 const stylingDir: string = resolve(__dirname, "..", "styling"); // Route to styling
 const assetsDir: string = resolve(__dirname, "..", "assets"); // Route to assets
@@ -23,7 +23,7 @@ export default function pageServer() {
   router.use("/about", express.static(staticPages + "/about.html"));
 
   // Static route to distribution
-  router.use("/", express.static(distPath));
+  router.use("/", express.static(gamePath));
 
   // Static routes to styling and assets
   router.use("/css", express.static(stylingDir));
@@ -60,7 +60,7 @@ export default function pageServer() {
   );
   // Catch any of the rest
   router.get("/:path", (req: Request, res: Response) => {
-    res.sendFile(join(distPath, "index.html"));
+    res.sendFile(join(gamePath, "index.html"));
   });
   return router;
 }
