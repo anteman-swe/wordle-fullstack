@@ -17,7 +17,8 @@ export default function App(): ReactNode {
   const presentSettings = {guesses: numberOfGuesses, chars: numberOfChars, allowDups: allowDups};
 
   const updateGameStates = (guesses: number, chars: number, dups: boolean) => {
-    setNumberOfGuesses(guesses);
+    const useGuesses: number = guesses < 6 ? 6 : guesses; 
+    setNumberOfGuesses(useGuesses);
     setNumberOfChars(chars);
     setAllowDups(dups);
   }
